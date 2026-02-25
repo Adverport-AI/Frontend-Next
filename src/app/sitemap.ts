@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllBlogPosts } from "@/lib/blog";
+import { getAllBlogPosts } from "../lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://adverport.com";
