@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { getAllBlogSlugs, getBlogPost } from "@/lib/blog";
+import { getAllBlogPosts, getBlogPostBySlug } from "../../../lib/blog";
 
 export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
