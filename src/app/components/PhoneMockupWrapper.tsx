@@ -167,9 +167,9 @@ export default function PhoneMockupWrapper() {
    * The outer div is sized by the aspect-ratio container in HeroSectionNew.
    */
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
       <div
-        className="scale-[0.32] min-[400px]:scale-[0.45] sm:scale-[0.62] md:scale-[0.75] lg:scale-100"
+        className="scale-[0.30] min-[400px]:scale-[0.38] sm:scale-[0.62] md:scale-[0.69] lg:scale-100"
         style={{
           position: 'relative',
           width:  944,
