@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import { getAllBlogPosts, getBlogPostBySlug } from "../../../lib/blog";
+import { getAllBlogSlugs, getBlogPostBySlug } from "../../../lib/blog";
 
 export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
@@ -11,7 +9,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getBlogPostBySlug(slug);
   if (!post) return {};
 
   return {
@@ -37,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getBlogPostBySlug(slug);
   if (!post) notFound();
 
   const jsonLd = {
@@ -63,8 +61,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {new Date(post.date).toLocaleDateString("tr-TR")} · {post.author ?? "Adverport"}
           </div>
 
-          <div className="prose prose-invert prose-headings:text-white prose-a:text-[#ff6b6b] prose-p:text-white/90 mt-10 max-w-none">
-            <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+          <div className="prose prose-invert prose-headings:text-white prose-a:text-[#ff6b6b] prose-p:text-white/90 mt-10 max-w-none whitespace-pre-wrap">
+            {post.content}
           </div>
         </article>
       </div>

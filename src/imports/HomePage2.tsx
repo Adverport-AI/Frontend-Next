@@ -25,33 +25,33 @@ function BackgroundNoise() {
     <div className="absolute contents left-[-145px] top-[121px]" data-name="Background Noise">
       <div className="absolute h-[775.391px] left-[-145px] opacity-50 top-[219.29px] w-[845.884px]">
         <div className="absolute inset-[-38.69%_-28.77%_-13.69%_-28.77%]">
-          <img alt="" className="block max-w-none size-full" height="1181.543" src={imgPolygon1} width="1332.557" />
+          <img alt="" className="block max-w-none size-full" height="1181.543" src={imgPolygon1.src} width="1332.557" />
         </div>
       </div>
       <div className="absolute h-[1043.744px] left-[calc(25%-1px)] opacity-50 top-[139.26px] w-[1197.322px]">
         <div className="absolute inset-[-28.74%_-22.61%_-19.19%_-22.61%]">
-          <img alt="" className="block max-w-none size-full" height="1544.075" src={imgStar1} width="1738.721" />
+          <img alt="" className="block max-w-none size-full" height="1544.075" src={imgStar1.src} width="1738.721" />
         </div>
       </div>
       <div className="absolute h-[462.538px] left-[calc(12.5%+61.89px)] opacity-50 top-[506.5px] w-[521.832px]">
         <div className="absolute inset-[-64.86%_-57.49%]">
-          <img alt="" className="block max-w-none size-full" height="1062.537" src={imgEllipse3} width="1121.832" />
+          <img alt="" className="block max-w-none size-full" height="1062.537" src={imgEllipse3.src} width="1121.832" />
         </div>
       </div>
       <div className="absolute h-[462.538px] left-[calc(37.5%+43px)] opacity-50 top-[598px] w-[521.832px]">
         <div className="absolute inset-[-64.86%_-57.49%]">
-          <img alt="" className="block max-w-none size-full" height="1062.537" src={imgEllipse3} width="1121.832" />
+          <img alt="" className="block max-w-none size-full" height="1062.537" src={imgEllipse3.src} width="1121.832" />
         </div>
       </div>
       <div className="absolute bg-size-[1024px_1024px,auto_auto] bg-top-left blur-[150px] h-[432.87px] left-[79px] opacity-50 top-[139.26px] w-[701.354px]" style={{ backgroundImage: `url('${imgRectangle6}'), linear-gradient(90deg, rgb(250, 17, 17) 0%, rgb(250, 17, 17) 100%)` }} />
       <div className="absolute h-[341.172px] left-[calc(12.5%+154.69px)] opacity-50 top-[219.27px] w-[384.908px]">
         <div className="absolute inset-[-87.93%_-77.94%]">
-          <img alt="" className="block max-w-none size-full" height="941.172" src={imgEllipse1} width="984.908" />
+          <img alt="" className="block max-w-none size-full" height="941.172" src={imgEllipse1.src} width="984.908" />
         </div>
       </div>
       <div className="absolute h-[429px] left-[calc(37.5%+82px)] opacity-50 top-[121px] w-[586px]">
         <div className="absolute inset-[-69.93%_-51.19%]">
-          <img alt="" className="block max-w-none size-full" height="1029" src={imgEllipse4} width="1186" />
+          <img alt="" className="block max-w-none size-full" height="1029" src={imgEllipse4.src} width="1186" />
         </div>
       </div>
     </div>
@@ -304,10 +304,10 @@ function Mockup() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute contents left-[calc(50%-132.9px)] top-[calc(50%-34.59px)]" data-name="Mockup">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[99.739px] left-[calc(50%-903.93px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[579.59px_144.743px] mask-size-[519.994px_379.706px] top-[calc(50%-319.32px)] w-[137.113px]" data-name="Screen" style={{ maskImage: `url('${imgScreen}')` }}>
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgScreen1} />
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgScreen1.src} />
       </div>
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[398.879px] left-[calc(50%-134.22px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[15.544px_8.296px] mask-size-[519.994px_379.706px] top-[calc(50%-33.3px)] w-[548.45px]" data-name="Change-This" style={{ maskImage: `url('${imgScreen}')` }}>
-        <img alt="" className="absolute block max-w-none size-full" height="398.879" src={imgChangeThis} width="548.45" />
+        <img alt="" className="absolute block max-w-none size-full" height="398.879" src={imgChangeThis.src} width="548.45" />
       </div>
     </div>
   );
@@ -318,12 +318,12 @@ function Component() {
     <div className="-translate-x-1/2 -translate-y-1/2 absolute contents left-[calc(50%-151.38px)] top-[calc(50%-21.09px)]" data-name="1">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[473.073px] left-[calc(50%-151.38px)] mix-blend-multiply opacity-60 top-[calc(50%-21.09px)] w-[641.236px]" data-name="Shadow">
         <div className="absolute inset-0 mix-blend-overlay overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow.src} />
         </div>
       </div>
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[416.783px] left-[calc(50%-133.36px)] top-[calc(50%-22.83px)] w-[546.736px]" data-name="iPhone-12-Pro">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro.src} />
         </div>
       </div>
       <Mockup />
@@ -336,7 +336,7 @@ function Shadow() {
     <div className="-translate-x-1/2 -translate-y-1/2 absolute contents left-[calc(50%+104.13px)] mix-blend-multiply top-[calc(50%+45.17px)]" data-name="Shadow">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[424.919px] left-[calc(50%+104.13px)] mix-blend-multiply opacity-60 top-[calc(50%+45.17px)] w-[735.735px]" data-name="Shadow">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow1} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow1.src} />
         </div>
       </div>
     </div>
@@ -347,10 +347,10 @@ function Mockup1() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute contents left-[calc(50%+132.79px)] top-[calc(50%-2.38px)]" data-name="Mockup">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[88.068px] left-[calc(50%-837.58px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[750.576px_186.249px] mask-size-[593.728px_333.694px] top-[calc(50%-311.45px)] w-[154.133px]" data-name="Screen" style={{ maskImage: `url('${imgScreen2}')` }}>
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgScreen3} />
+        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgScreen3.src} />
       </div>
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[352.207px] left-[calc(50%+131.2px)] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[12.997px_8.68px] mask-size-[593.728px_333.694px] top-[calc(50%-1.81px)] w-[616.531px]" data-name="Change-This" style={{ maskImage: `url('${imgScreen2}')` }}>
-        <img alt="" className="absolute block max-w-none size-full" height="352.207" src={imgChangeThis1} width="616.531" />
+        <img alt="" className="absolute block max-w-none size-full" height="352.207" src={imgChangeThis1.src} width="616.531" />
       </div>
     </div>
   );
@@ -362,12 +362,12 @@ function Component1() {
       <Shadow />
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[283.777px] left-[calc(50%-62.28px)] mix-blend-multiply opacity-60 top-[calc(50%-25.07px)] w-[375.009px]" data-name="Shadow">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow2} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow2.src} />
         </div>
       </div>
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[371.119px] left-[calc(50%+131.62px)] top-[calc(50%+8.8px)] w-[622.303px]" data-name="iPhone-12-Pro">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro1} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro1.src} />
         </div>
       </div>
       <Mockup1 />
@@ -381,7 +381,7 @@ function IPhone12ProMax() {
       <Component />
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[392.872px] left-[calc(50%-133.28px)] mix-blend-screen opacity-30 top-[calc(50%-33.62px)] w-[538.93px]" data-name="Reflection">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgReflection} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgReflection.src} />
         </div>
       </div>
       <Component1 />
@@ -536,13 +536,13 @@ function Group2() {
     <div className="absolute contents left-[calc(37.5%+23px)] top-[634px]">
       <div className="absolute bg-[#1e1e1e] border border-[#e96300] border-solid h-[38px] left-[calc(37.5%+23px)] rounded-[15px] top-[634px] w-[299px]" data-name="Rectangle" />
       <div className="absolute left-[calc(37.5%+33px)] size-[28px] top-[639px]">
-        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse5} width="28" />
+        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse5.src} width="28" />
       </div>
       <div className="absolute left-[calc(37.5%+50px)] size-[28px] top-[639px]">
-        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse6} width="28" />
+        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse6.src} width="28" />
       </div>
       <div className="absolute left-[calc(37.5%+67px)] size-[28px] top-[639px]">
-        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse7} width="28" />
+        <img alt="" className="absolute block max-w-none size-full" height="28" src={imgEllipse7.src} width="28" />
       </div>
       <div className="-translate-x-1/2 -translate-y-1/2 absolute flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold h-[23px] justify-center leading-[0] left-[calc(37.5%+203px)] not-italic text-[20px] text-center text-white top-[653.5px] tracking-[0.42px] w-[204px]">
         <p className="leading-[16px] whitespace-pre-wrap">25B+ Kullanıcı sevdi</p>

@@ -52,8 +52,13 @@ export function getBlogPost(slug: string): BlogPost | null {
 export function getAllBlogPosts(): BlogPostMeta[] {
   return getAllBlogSlugs()
     .map((slug) => getBlogPost(slug))
-    .filter((p): p is BlogPost => !!p)
-    .map(({ content, ...meta }) => meta)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+    .filter((post): post is BlogPost => post !== null)
+    .map(({ content: _content, ...meta }) => meta)
+    .sort((a, b) => {
+      const aTime = a.date ? new Date(a.date).getTime() : 0;
+      const bTime = b.date ? new Date(b.date).getTime() : 0;
+      return bTime - aTime;
+    });
 }
+
 export const getBlogPostBySlug = getBlogPost;

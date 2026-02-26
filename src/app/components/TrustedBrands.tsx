@@ -57,11 +57,7 @@ export function TrustedBrands() {
                 className="flex-shrink-0 transition-all duration-300 group/logo hover:scale-110 scale-[0.65] md:scale-[0.8] lg:scale-100"
                 style={{ width: brand.width, height: brand.height }}
               >
-                <brand.Component
-                  className="w-full h-full"
-                  fill="none"
-                  preserveAspectRatio="none"
-                />
+                <brand.Component />
               </div>
             ))}
 
@@ -72,11 +68,7 @@ export function TrustedBrands() {
                 className="flex-shrink-0 transition-all duration-300 group/logo hover:scale-110 scale-[0.65] md:scale-[0.8] lg:scale-100"
                 style={{ width: brand.width, height: brand.height }}
               >
-                <brand.Component
-                  className="w-full h-full"
-                  fill="none"
-                  preserveAspectRatio="none"
-                />
+                <brand.Component />
               </div>
             ))}
           </div>

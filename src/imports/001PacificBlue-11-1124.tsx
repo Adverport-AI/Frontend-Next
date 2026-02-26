@@ -11,7 +11,7 @@ function MaskGroup() {
   return (
     <div className="absolute contents inset-[6.44%_36.54%_19.87%_8.38%]" data-name="Mask group">
       <div className="absolute inset-[4.83%_35.17%_17.76%_6.73%] mask-intersect mask-luminance mask-no-clip mask-no-repeat mask-position-[6.568px_3.506px] mask-size-[219.713px_160.468px]" data-name="Change-This" style={{ maskImage: `url('${imgChangeThis}')` }}>
-        <img alt="" className="absolute block max-w-none size-full" height="168.571" src={imgChangeThis1} width="231.737" />
+        <img alt="" className="absolute block max-w-none size-full" height="168.571" src={imgChangeThis1.src} width="231.737" />
       </div>
     </div>
   );
@@ -30,12 +30,12 @@ function Component() {
     <div className="absolute contents inset-[0_32.07%_8.19%_0]" data-name="1">
       <div className="absolute inset-[0_32.07%_8.19%_0] mix-blend-multiply" data-name="Shadow">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow.src} />
         </div>
       </div>
       <div className="absolute inset-[5.12%_35.17%_13.99%_6.91%]" data-name="iPhone-12-Pro">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro.src} />
         </div>
       </div>
       <Mockup />
@@ -48,7 +48,7 @@ function Shadow() {
     <div className="absolute contents inset-[17.53%_0_0_22.06%] mix-blend-multiply" data-name="Shadow">
       <div className="absolute inset-[17.53%_0_0_22.06%] mix-blend-multiply" data-name="Rectangle">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgRectangle} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgRectangle.src} />
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@ function MaskGroup1() {
   return (
     <div className="absolute contents inset-[17.16%_4.49%_18.08%_32.62%]" data-name="Mask group">
       <div className="absolute inset-[15.47%_3.45%_16.17%_31.24%] mask-intersect mask-luminance mask-no-clip mask-no-repeat mask-position-[5.49px_3.668px] mask-size-[250.869px_141.023px]" data-name="Change-This" style={{ maskImage: `url('${imgChangeThis2}')` }}>
-        <img alt="" className="absolute block max-w-none size-full" height="148.846" src={imgChangeThis3} width="260.503" />
+        <img alt="" className="absolute block max-w-none size-full" height="148.846" src={imgChangeThis3.src} width="260.503" />
       </div>
     </div>
   );
@@ -79,12 +79,12 @@ function Component1() {
       <Shadow />
       <div className="absolute inset-[17.6%_36.73%_27.33%_23.54%] mix-blend-multiply" data-name="Shadow">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow1} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgShadow1.src} />
         </div>
       </div>
       <div className="absolute inset-[15.69%_3.1%_12.28%_30.98%]" data-name="iPhone-12-Pro">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro1} />
+          <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgIPhone12Pro1.src} />
         </div>
       </div>
       <Mockup1 />
