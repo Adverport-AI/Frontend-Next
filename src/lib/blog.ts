@@ -56,3 +56,4 @@ export function getAllBlogPosts(): BlogPostMeta[] {
     .map(({ content, ...meta }) => meta)
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 }
+export const getBlogPostBySlug = getBlogPost;
