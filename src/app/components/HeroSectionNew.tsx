@@ -166,8 +166,8 @@ export default function HeroSectionNew() {
           </div>
 
           {/* Phone Mockups */}
-          <div className="w-full flex justify-center mt-2 sm:mt-3 md:mt-4 lg:mt-10 mb-0">
-            <div className="w-[280px] min-[640px]:w-[620px] md:w-[650px] lg:w-[944px]">
+          <div className="w-full flex justify-center mt-8 sm:mt-8 md:mt-8 lg:mt-10 mb-0">
+            <div className="w-[280px] min-[400px]:w-[360px] min-[640px]:w-[620px] md:w-[650px] lg:w-[944px]">
               <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
                 <div className="absolute inset-0">
                   <PhoneMockupWrapper />
