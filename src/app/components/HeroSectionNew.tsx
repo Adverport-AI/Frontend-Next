@@ -49,33 +49,32 @@ export default function HeroSectionNew() {
       </div>
 
       {/* Overlay shapes - animated pentagons with full rotation - more spacing on mobile */}
-      <motion.div 
-        className="absolute h-[350px] sm:h-[700px] lg:h-[897px] left-[-250px] sm:left-[-450px] lg:left-[-532px] xl:left-[-450px] top-[250px] sm:top-[300px] lg:top-[384px] w-[350px] sm:w-[700px] lg:w-[890px] mix-blend-overlay opacity-50 sm:opacity-70 pointer-events-none"
+      <motion.div
+        className="absolute h-[350px] sm:h-[700px] lg:h-[897px] left-[-250px] sm:left-[-450px] lg:left-[-532px] xl:left-[calc(37.5%_-_1019px)] top-[250px] sm:top-[300px] lg:top-[384px] w-[350px] sm:w-[700px] lg:w-[890px] mix-blend-overlay opacity-50 sm:opacity-70 pointer-events-none"
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
         animate={{
           y: [0, -20, 0],
           rotate: [0, 360],
         }}
         transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: "linear",
+          y: {
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          rotate: {
+            duration: 40,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          },
         }}
       >
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
-          <g filter="url(#filter0_d_1_306)" style={{ mixBlendMode: "overlay" }}>
-            <path d={svgPaths.p155bdde0} fill="url(#paint0_linear_1_306)" shapeRendering="crispEdges" />
+        <svg className="block size-full" style={{ filter: 'drop-shadow(0px 4px 13px rgba(0,0,0,0.25))' }} fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
+          <g style={{ mixBlendMode: "overlay" }}>
+            <path d={svgPaths.p155bdde0} fill="url(#paint0_linear_1_306)" shapeRendering="geometricPrecision" />
           </g>
           <defs>
-            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="923.4" id="filter0_d_1_306" width="916.4" x="0" y="0">
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="6.6" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_306" />
-              <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_306" mode="normal" result="shape" />
-            </filter>
             <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_306" x1="670.721" x2="252.719" y1="-93.035" y2="847.332">
               <stop stopColor="white" stopOpacity="0" />
               <stop offset="1" stopColor="white" />
@@ -84,33 +83,32 @@ export default function HeroSectionNew() {
         </svg>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="absolute h-[450px] sm:h-[800px] lg:h-[1056.089px] left-[60%] sm:left-[55%] lg:left-[calc(62.5%+129px)] xl:right-[-450px] 2xl:right-[-350px] top-[100px] sm:top-[80px] lg:top-[106px] w-[450px] sm:w-[800px] lg:w-[1061.492px] mix-blend-overlay opacity-50 sm:opacity-70 pointer-events-none"
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
         animate={{
           y: [0, 20, 0],
           rotate: [0, 360],
         }}
         transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: "linear",
+          y: {
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          },
+          rotate: {
+            duration: 40,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          },
         }}
       >
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
-          <g filter="url(#filter0_d_1_304)" style={{ mixBlendMode: "overlay" }}>
-            <path d={svgPaths.p3357f280} fill="url(#paint0_linear_1_304_red)" shapeRendering="crispEdges" />
+        <svg className="block size-full" style={{ filter: 'drop-shadow(0px 4px 13px rgba(0,0,0,0.25))' }} fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
+          <g style={{ mixBlendMode: "overlay" }}>
+            <path d={svgPaths.p3357f280} fill="url(#paint0_linear_1_304_red)" shapeRendering="geometricPrecision" />
           </g>
           <defs>
-            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="923.4" id="filter0_d_1_304" width="916.4" x="0" y="0">
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="6.6" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-              <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_304" />
-              <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_304" mode="normal" result="shape" />
-            </filter>
             <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_1_304_red" x1="670.721" x2="252.719" y1="-93.035" y2="847.332">
               <stop stopColor="#ff0000" stopOpacity="0.3" />
               <stop offset="1" stopColor="#d21027" />
