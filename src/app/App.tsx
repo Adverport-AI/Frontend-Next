@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, Star, TrendingUp, Users, Zap, Shield, Gift, Clock
 import svgPaths from '../imports/svg-2ykxxdmmup';
 import HeroSectionNew from './components/HeroSectionNew';
 import { TrustedBrands } from './components/TrustedBrands';
+import { ContactForm } from './components/ContactForm';
 
 function LogoWhite() {
   return (
@@ -564,7 +565,17 @@ function Footer() {
   return (
     <footer id="contact" className="bg-black border-t border-white/10 py-16">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-5 gap-12 mb-12">
+
+        {/* Contact Form Section */}
+        <div className="mb-16 max-w-2xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">İletişime Geç</h2>
+          <p className="text-white/60 text-sm mb-8">
+            Sorularınız, iş birliği teklifleriniz veya destek talepleriniz için bize yazın.
+          </p>
+          <ContactForm />
+        </div>
+
+        <div className="border-t border-white/10 pt-12 grid md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="text-white font-bold text-2xl mb-4">ADVERPORT</div>
