@@ -1,13 +1,16 @@
+"use client";
+
 /**
  * Sanity Studio - /studio route
  * Sanity CMS yönetim paneline bu URL'den erişilir.
  */
-import { NextStudio } from "next-sanity/studio";
+import dynamic from "next/dynamic";
 import config from "../../../../sanity.config";
 
-export const dynamic = "force-dynamic";
-
-export { metadata, viewport } from "next-sanity/studio";
+const NextStudio = dynamic(
+  () => import("next-sanity/studio").then((mod) => mod.NextStudio),
+  { ssr: false }
+);
 
 export default function StudioPage() {
   return <NextStudio config={config} />;
