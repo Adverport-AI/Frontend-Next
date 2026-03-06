@@ -3,6 +3,22 @@ import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
+import type { DocumentActionComponent } from "sanity";
+
+const BASE_URL = "https://adverport.com";
+
+const OpenOnSiteAction: DocumentActionComponent = ({ draft, published }) => {
+  const doc = draft ?? published;
+  const slug = (doc as { slug?: { current?: string } })?.slug?.current;
+  if (!slug) return null;
+  return {
+    label: "Siteyi Aç",
+    tone: "positive" as const,
+    onHandle: () => {
+      window.open(`${BASE_URL}/blog/${slug}`, "_blank", "noopener");
+    },
+  };
+};
 
 export default defineConfig({
   basePath: "/studio",
@@ -11,6 +27,10 @@ export default defineConfig({
   apiVersion,
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    actions: (prev, { schemaType }) =>
+      schemaType === "blogPost" ? [...prev, OpenOnSiteAction] : prev,
   },
   plugins: [
     structureTool({
