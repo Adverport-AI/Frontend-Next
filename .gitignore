@@ -5,10 +5,7 @@ node_modules
 .claude
 .env.local
 .env*.local
-handoff/**
+handoff/figma-make/*
 !handoff/figma-make/README.md
-!handoff/Website Revamp v2/
-handoff/Website Revamp v2/**
-!handoff/Website Revamp v2/**
 scripts/
 tsconfig.tsbuildinfo
