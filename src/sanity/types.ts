@@ -20,6 +20,7 @@ export type BlogPost = {
   coverImage?: SanityImage & { alt?: string };
   body?: PortableTextBlock[];
   categories?: string[];
+  readTimeMinutes?: number;
   seoTitle?: string;
   seoDescription?: string;
   ogImage?: SanityImage;
