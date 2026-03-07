@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ContactForm } from "./ContactForm";
 import svgPaths from "../../imports/svg-2ykxxdmmup";
 
@@ -83,7 +84,7 @@ const footerSections = [
   {
     title: "Destek",
     links: [
-      { label: "Sık Sorulan Sorular", href: "/#faq" },
+      { label: "Sık Sorulan Sorular", href: "/sss" },
       { label: "Yardım Merkezi", href: "/yardim-merkezi" },
     ],
   },
@@ -120,9 +121,9 @@ export function Footer({ showContact = false }: FooterProps) {
         <div className={`grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-8 mb-12 ${showContact ? "border-t border-white/10 pt-12" : ""}`}>
           {/* Logo + Tagline + Social Icons */}
           <div className="col-span-2">
-            <a href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-block mb-4">
               <LogoWhite />
-            </a>
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-[240px]">
               Alışveriş yap ve paylaş, kazanç sağla
             </p>
@@ -149,9 +150,9 @@ export function Footer({ showContact = false }: FooterProps) {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-white/60 hover:text-white transition-colors text-sm">
+                    <Link href={link.href} className="text-white/60 hover:text-white transition-colors text-sm">
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

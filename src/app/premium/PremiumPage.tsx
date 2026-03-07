@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Star, CheckCircle2, ArrowRight, Zap, TrendingUp, Shield, Crown } from "lucide-react";
 import { Navbar } from "../components/Navbar";
@@ -369,9 +370,9 @@ function CTA() {
           <button className="font-['Inter',sans-serif] bg-gradient-to-r from-[#d21027] to-[#EB5200] text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_30px_rgba(210,16,39,0.5)] transition-all inline-flex items-center justify-center gap-2">
             7 Gün Ücretsiz Dene <ArrowRight className="w-5 h-5" />
           </button>
-          <a href="/" className="font-['Inter',sans-serif] bg-white/10 border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/15 transition-all inline-flex items-center justify-center">
+          <Link href="/" className="font-['Inter',sans-serif] bg-white/10 border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/15 transition-all inline-flex items-center justify-center">
             Ana Sayfaya Dön
-          </a>
+          </Link>
         </div>
       </div>
     </section>

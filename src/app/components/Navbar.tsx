@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import svgPaths from "../../imports/svg-2ykxxdmmup";
 
@@ -61,16 +62,16 @@ export function Navbar({ activePage }: NavbarProps = {}) {
         <div className="flex items-center justify-between min-[800px]:justify-center min-[800px]:gap-10 lg:gap-14">
 
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <div className="scale-75 sm:scale-100 origin-left">
               <LogoWhite />
             </div>
-          </a>
+          </Link>
 
           {/* Navigation Links */}
           <div className="hidden min-[800px]:flex items-center gap-4 lg:gap-6">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.page}
                 href={link.href}
                 className={`font-['Inter',sans-serif] text-white text-[15px] font-medium hover:text-[#ff6b6b] transition-colors ${
@@ -78,7 +79,7 @@ export function Navbar({ activePage }: NavbarProps = {}) {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -126,7 +127,7 @@ export function Navbar({ activePage }: NavbarProps = {}) {
           <div className="min-[800px]:hidden mt-6 pt-6 border-t border-white/20">
             <div className="flex flex-col gap-4 items-center">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.page}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
@@ -135,7 +136,7 @@ export function Navbar({ activePage }: NavbarProps = {}) {
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
