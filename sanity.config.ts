@@ -5,7 +5,7 @@ import { schemaTypes } from "./src/sanity/schemas";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import type { DocumentActionComponent } from "sanity";
 
-const BASE_URL = "https://adverport.com";
+const BASE_URL = "https://adverport-next-seo-blog.vercel.app";
 
 const OpenOnSiteAction: DocumentActionComponent = ({ draft, published }) => {
   const doc = draft ?? published;
