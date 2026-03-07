@@ -3,7 +3,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  serverExternalPackages: ["sanity", "@sanity/client", "next-sanity"],
+  serverExternalPackages: ["sanity", "@sanity/client"],
   images: {
     remotePatterns: [
       {
