@@ -143,6 +143,30 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
       </li>
     ),
   },
+  types: {
+    image: ({ value }: { value?: { asset?: { _ref?: string }; alt?: string; caption?: string } }) => {
+      if (!value?.asset?._ref) return null;
+      const imageUrl = urlFor(value as Parameters<typeof urlFor>[0]).width(900).auto("format").url();
+      return (
+        <figure className="my-8 sm:my-10">
+          <div className="relative rounded-2xl overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt={value.alt ?? ""}
+              width={900}
+              height={500}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-center text-white/30 text-xs mt-3 italic">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+    },
+  },
 };
 
 export default async function BlogPostPage({
