@@ -49,23 +49,20 @@ export function AppDownloadCTA() {
           style={{
             animation: "cta-pentagon-spin 40s linear infinite",
             willChange: "transform",
+            transform: "translateZ(0)",
           }}
         >
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
-            <g filter="url(#filter_cta_left)" style={{ mixBlendMode: "overlay" }}>
-              <path d={pentagonSvgPaths.p155bdde0} fill="url(#paint_cta_left)" shapeRendering="crispEdges" />
+          <svg
+            className="block size-full"
+            style={{ filter: "drop-shadow(0px 4px 13px rgba(0,0,0,0.25))" }}
+            fill="none"
+            preserveAspectRatio="none"
+            viewBox="0 0 916.4 923.4"
+          >
+            <g style={{ mixBlendMode: "overlay" }}>
+              <path d={pentagonSvgPaths.p155bdde0} fill="url(#paint_cta_left)" shapeRendering="geometricPrecision" />
             </g>
             <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="923.4" id="filter_cta_left" width="916.4" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="6.6" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1" />
-                <feBlend in="SourceGraphic" in2="effect1" mode="normal" result="shape" />
-              </filter>
               <linearGradient gradientUnits="userSpaceOnUse" id="paint_cta_left" x1="670.721" x2="252.719" y1="-93.035" y2="847.332">
                 <stop stopColor="white" stopOpacity="0" />
                 <stop offset="1" stopColor="white" />
@@ -86,23 +83,20 @@ export function AppDownloadCTA() {
           style={{
             animation: "cta-pentagon-spin 40s linear infinite",
             willChange: "transform",
+            transform: "translateZ(0)",
           }}
         >
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 916.4 923.4">
-            <g filter="url(#filter_cta_right)" style={{ mixBlendMode: "overlay" }}>
-              <path d={pentagonSvgPaths.p3357f280} fill="url(#paint_cta_right)" shapeRendering="crispEdges" />
+          <svg
+            className="block size-full"
+            style={{ filter: "drop-shadow(0px 4px 13px rgba(0,0,0,0.25))" }}
+            fill="none"
+            preserveAspectRatio="none"
+            viewBox="0 0 916.4 923.4"
+          >
+            <g style={{ mixBlendMode: "overlay" }}>
+              <path d={pentagonSvgPaths.p3357f280} fill="url(#paint_cta_right)" shapeRendering="geometricPrecision" />
             </g>
             <defs>
-              <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="923.4" id="filter_cta_right" width="916.4" x="0" y="0">
-                <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="6.6" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                <feBlend in2="BackgroundImageFix" mode="normal" result="effect1" />
-                <feBlend in="SourceGraphic" in2="effect1" mode="normal" result="shape" />
-              </filter>
               <linearGradient gradientUnits="userSpaceOnUse" id="paint_cta_right" x1="670.721" x2="252.719" y1="-93.035" y2="847.332">
                 <stop stopColor="#ff0000" stopOpacity="0.3" />
                 <stop offset="1" stopColor="#d21027" />

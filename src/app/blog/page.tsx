@@ -3,6 +3,7 @@ import { getAllBlogPostsMeta } from "../../lib/queries";
 import { urlFor } from "../../lib/sanity";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { CtaSection } from "../components/CtaSection";
 import { BlogListClient } from "./BlogListClient";
 
 export const revalidate = 3600;
@@ -27,6 +28,11 @@ export default async function BlogIndexPage() {
     <div className="bg-black min-h-screen">
       <Navbar activePage="blog" />
       <BlogListClient posts={postsWithImages} />
+      <CtaSection
+        title="Yeni İçerikleri Oku,"
+        highlight="Uygulamayı İndir"
+        description="Blog rehberlerini keşfettin; şimdi Adverport'u indirip önerileri doğrudan kendi akışında denemeye başlayabilirsin."
+      />
       <Footer />
     </div>
   );
