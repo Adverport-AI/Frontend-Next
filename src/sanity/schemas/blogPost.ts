@@ -40,7 +40,7 @@ export const blogPost = defineType({
       title: "Özet",
       type: "text",
       rows: 3,
-      validation: (r) => r.required().max(200),
+      validation: (r) => r.required().max(500),
     }),
     defineField({
       name: "coverImage",

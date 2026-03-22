@@ -27,18 +27,18 @@ export async function POST(req: NextRequest) {
   const slug = body.slug?.current;
 
   if (docType === "blogPost") {
-    revalidateTag("blogPost");
+    revalidateTag("blogPost", {});
     if (slug) {
-      revalidateTag(`blogPost-${slug}`);
+      revalidateTag(`blogPost-${slug}`, {});
       revalidatePath(`/blog/${slug}`);
     }
     revalidatePath("/blog");
     revalidatePath("/sitemap.xml");
   } else if (docType === "brand") {
-    revalidateTag("brand");
+    revalidateTag("brand", {});
     revalidatePath("/");
   } else if (docType === "siteSettings") {
-    revalidateTag("siteSettings");
+    revalidateTag("siteSettings", {});
     revalidatePath("/");
   } else {
     // Bilinmeyen tip — tüm sayfaları revalidate et
