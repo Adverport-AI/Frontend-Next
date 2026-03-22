@@ -140,7 +140,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02]">
+    <div className="overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] transition-colors hover:border-white/20">
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
@@ -281,29 +281,27 @@ export default function SssPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-black py-16 sm:py-20">
-        <div className="mx-auto max-w-5xl px-6 text-center sm:px-8">
-          <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] px-6 py-10 sm:px-10 sm:py-12">
-            <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-4xl">
-              Hâlâ yardıma mı ihtiyacınız var?
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl font-['Inter',sans-serif] text-sm leading-relaxed text-white/60 sm:text-base">
-              Cevabı burada bulamadıysanız destek ekibine ulaşın veya yardım merkezindeki konu başlıklarını inceleyin.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/iletisim"
-                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.35)]"
-              >
-                İletişime Geç
-              </Link>
-              <Link
-                href="/yardim-merkezi"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-colors hover:bg-white/10"
-              >
-                Yardım Merkezi
-              </Link>
-            </div>
+      <section className="border-t border-white/5 bg-black py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 text-center sm:px-8">
+          <h2 className="mb-4 font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl">
+            Hâlâ sorunuz mu var?
+          </h2>
+          <p className="mx-auto mb-8 max-w-md font-['Inter',sans-serif] text-sm leading-relaxed text-white/50 sm:text-base">
+            Aradığınız cevabı bulamadıysanız destek ekibimizle iletişime geçin.
+          </p>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/iletisim"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.4)]"
+            >
+              İletişime Geç
+            </Link>
+            <Link
+              href="/yardim-merkezi"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-colors hover:bg-white/10 hover:border-white/20"
+            >
+              Yardım Merkezi
+            </Link>
           </div>
         </div>
       </section>

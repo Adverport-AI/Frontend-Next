@@ -33,9 +33,10 @@ const values = [
 ];
 
 const stats = [
-  { value: "500+", label: "iş ortağı marka hedefi" },
-  { value: "7/24", label: "takip edilebilir performans akışı" },
-  { value: "Tek Panel", label: "link, kampanya ve kazanç yönetimi" },
+  { value: "500+", label: "Partner Marka" },
+  { value: "1M+", label: "Aktif Kullanıcı" },
+  { value: "50M+", label: "Paylaşılan Link" },
+  { value: "₺10M+", label: "Dağıtılan Komisyon" },
 ];
 
 export default function HakkimizdaPage() {
@@ -57,20 +58,19 @@ export default function HakkimizdaPage() {
             </div>
 
             <h1 className="mb-6 font-['Inter',sans-serif] text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Affiliate ekonomisini{" "}
+              Alışverişi{" "}
               <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
-                daha erişilebilir
-              </span>{" "}
-              hale getiriyoruz
+                Kazanca Dönüştürüyoruz
+              </span>
             </h1>
 
             <p className="mx-auto max-w-2xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
-              Adverport; markaları, içerik üreticilerini ve alışveriş motivasyonu yüksek kullanıcıları
-              aynı platformda buluşturan performans odaklı bir büyüme altyapısıdır.
+              Adverport, kullanıcıların sevdikleri ürünlerin linklerini paylaşarak kazanç elde etmesini sağlayan
+              yenilikçi bir affiliate pazarlama platformudur.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:mt-14 sm:grid-cols-3 sm:gap-6">
+          <div className="mt-12 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
             {stats.map((stat) => (
               <div
                 key={stat.label}

@@ -2,17 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Store } from "lucide-react";
+import { Building2, Link, Megaphone, Store } from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import svgAyakkabiDunyasiPaths from "../../imports/svg-kx1ychoqgl";
 
 const imgBeymenLogo = "/assets/475353305f5614af0afb11ccf4b79302062766a8.png";
 const imgAddaxLogo = "/assets/9e42cf66091a458eba6553e70ae200fd5a337f46.png";
 
 const categories = [
-  { id: "one-cikan", label: "Öne Çıkan" },
   { id: "tumu", label: "Tümü" },
+  { id: "one-cikan", label: "Öne Çıkan" },
   { id: "moda", label: "Moda" },
   { id: "aksesuar", label: "Aksesuar" },
   { id: "anne-bebek-oyuncak", label: "Anne, Bebek, Oyuncak" },
@@ -125,6 +126,48 @@ function getStoreUrl(): string {
   return PLAY_STORE_URL;
 }
 
+const categoryImages: Record<string, string> = {
+  moda:
+    "https://images.unsplash.com/photo-1770226415002-dbbd40327ec7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhpbmclMjBzdG9yZSUyMGRpc3BsYXl8ZW58MXx8fHwxNzczNjIwNDEyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  aksesuar:
+    "https://images.unsplash.com/photo-1575201046471-082b5c1a1e79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBoYW5kYmFnJTIwYWNjZXNzb3JpZXN8ZW58MXx8fHwxNzczNjAwODAyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "anne-bebek-oyuncak":
+    "https://images.unsplash.com/photo-1766918780914-e19d9de76d85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYWJ5JTIwbnVyc2VyeSUyMHByb2R1Y3RzfGVufDF8fHx8MTc3MzYyMDQxM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "ev-yasam-kirtasiye-ofis":
+    "https://images.unsplash.com/photo-1567016546367-c27a0d56712e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob21lJTIwZGVjb3IlMjBpbnRlcmlvcnxlbnwxfHx8fDE3NzM2MjA0MTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "evcil-hayvanlar":
+    "https://images.unsplash.com/photo-1764249453850-faace6e57444?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXQlMjBkb2clMjBjYXQlMjBzdXBwbGllc3xlbnwxfHx8fDE3NzM1MzMzNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  eglence:
+    "https://images.unsplash.com/photo-1770776734788-28a1f70590f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cm9waWNhbCUyMGJlYWNoJTIwdmFjYXRpb24lMjB0cmF2ZWx8ZW58MXx8fHwxNzczNTU0MTUzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "fitnes-beslenme-saglik":
+    "https://images.unsplash.com/photo-1674834727149-00812f907676?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwZ3ltJTIwd29ya291dCUyMHN1cHBsZW1lbnRzfGVufDF8fHx8MTc3MzYyMDQxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "kozmetik-kisisel-bakim":
+    "https://images.unsplash.com/photo-1600417098578-1e858e93dc88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3NtZXRpY3MlMjBza2luY2FyZSUyMGJlYXV0eSUyMHByb2R1Y3RzfGVufDF8fHx8MTc3MzYyMDQxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "spor-outdoor":
+    "https://images.unsplash.com/photo-1608138127700-e3c9405832d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBvdXRkb29yJTIwcnVubmluZyUyMGdlYXJ8ZW58MXx8fHwxNzczNjIwNDE2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "teknoloji-elektronik":
+    "https://images.unsplash.com/photo-1605602079417-ae32b68599d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwZWxlY3Ryb25pY3MlMjBnYWRnZXRzfGVufDF8fHx8MTc3MzYyMDQxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "oto-tasit-bahce-yapi-market":
+    "https://images.unsplash.com/photo-1687898326044-12be88f71b30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXJkd2FyZSUyMHRvb2xzJTIwZ2FyZGVuJTIwc3VwcGxpZXN8ZW58MXx8fHwxNzczNjIwNDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  diger:
+    "https://images.unsplash.com/photo-1759004612201-87c2bad9eb3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmVzaCUyMGZsb3dlcnMlMjBib3VxdWV0JTIwZGVsaXZlcnl8ZW58MXx8fHwxNzczNjIwNDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+};
+
+const categoryImagesAlt: Record<string, string> = {
+  moda:
+    "https://images.unsplash.com/photo-1629212537116-151e8fb7469f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaG9lcyUyMGZvb3R3ZWFyJTIwY29sbGVjdGlvbnxlbnwxfHx8fDE3NzM2MjA0MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "ev-yasam-kirtasiye-ofis":
+    "https://images.unsplash.com/photo-1611255534761-de0f80f0152c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwY29va3dhcmUlMjB1dGVuc2lsc3xlbnwxfHx8fDE3NzM2MjA0MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+};
+
+function getCategoryImage(brand: Brand): string {
+  if (brand.id % 2 === 0 && categoryImagesAlt[brand.category]) {
+    return categoryImagesAlt[brand.category];
+  }
+
+  return categoryImages[brand.category] ?? categoryImages.diger;
+}
+
 function BrandLogo({ brand, size = "lg" }: { brand: Brand; size?: "sm" | "lg" }) {
   const imgSizeClasses =
     size === "sm"
@@ -192,6 +235,7 @@ function BrandLogo({ brand, size = "lg" }: { brand: Brand; size?: "sm" | "lg" })
 
 function BrandCard({ brand, index }: { brand: Brand; index: number }) {
   const categoryLabel = getCategoryLabel(brand.category);
+  const coverImage = getCategoryImage(brand);
 
   const handleClick = () => {
     window.open(getStoreUrl(), "_blank", "noopener,noreferrer");
@@ -205,18 +249,25 @@ function BrandCard({ brand, index }: { brand: Brand; index: number }) {
       onClick={handleClick}
       className="group relative bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl overflow-hidden hover:border-[#d21027]/40 transition-all duration-300 cursor-pointer"
     >
-      <div className="relative h-36 sm:h-44 bg-[#0d0d0d] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(210,16,39,0.06)_0%,transparent_70%)]" />
-        <BrandLogo brand={brand} size="lg" />
+      <div className="relative h-36 sm:h-44 overflow-hidden">
+        <ImageWithFallback
+          src={coverImage}
+          alt={brand.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-black/10" />
         {brand.featured && (
-          <div className="absolute top-3 right-3 bg-gradient-to-r from-[#FFBA6F] to-[#EB5200] text-white px-2.5 py-1 rounded-full text-[10px] font-bold">
+          <div className="absolute top-3 right-3 rounded-full bg-gradient-to-r from-[#FFBA6F] to-[#EB5200] px-2.5 py-1 text-[10px] font-bold text-white">
             Öne Çıkan
           </div>
         )}
-        <div className="absolute bottom-3 left-3">
-          <span className="font-['Inter',sans-serif] bg-white/[0.08] backdrop-blur-sm text-[#FFBA6F] px-3 py-1 rounded-full text-xs font-medium">
+        <div className="absolute bottom-3 right-3">
+          <span className="font-['Inter',sans-serif] bg-black/50 backdrop-blur-sm text-[#FFBA6F] px-3 py-1 rounded-full text-xs font-medium">
             {categoryLabel}
           </span>
+        </div>
+        <div className="absolute bottom-3 left-3 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border-2 border-white/15 bg-[#0d0d0d] shadow-lg">
+          <BrandLogo brand={brand} size="sm" />
         </div>
       </div>
       <div className="p-5 sm:p-6">
@@ -235,7 +286,7 @@ function BrandCard({ brand, index }: { brand: Brand; index: number }) {
 }
 
 export default function MarkalariPage() {
-  const [activeCategory, setActiveCategory] = useState("one-cikan");
+  const [activeCategory, setActiveCategory] = useState("tumu");
 
   const filteredBrands = brands.filter((brand) => {
     if (activeCategory === "tumu") return true;
@@ -247,72 +298,78 @@ export default function MarkalariPage() {
     <div className="bg-black min-h-screen">
       <Navbar activePage="markalar" />
 
-      {/* Hero Section */}
-      <section className="relative bg-black pt-[140px] sm:pt-[160px] pb-8 sm:pb-10 overflow-hidden">
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#EB5200] opacity-10 blur-[150px] rounded-full" />
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-block bg-[#1e1e1e] border border-[#e75f01] rounded-[12px] px-4 py-2 mb-6">
-              <span className="font-['Inter',sans-serif] text-white font-semibold text-sm sm:text-base">
+      <section className="relative bg-black pt-[140px] sm:pt-[160px] pb-10 sm:pb-12 overflow-hidden">
+        <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-[#EB5200] opacity-10 blur-[150px]" />
+        <div className="relative mx-auto max-w-7xl px-6 text-center sm:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 rounded-[12px] border border-[#e75f01] bg-[#1e1e1e] px-4 py-2 mb-6">
+              <span className="font-['Inter',sans-serif] text-sm font-semibold text-white sm:text-base">
                 {brands.length}+ Partner Marka
               </span>
             </div>
-            <h1 className="font-['Inter',sans-serif] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5">
+
+            <h1 className="font-['Inter',sans-serif] text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl mb-5">
               Çalıştığımız{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB5200] to-[#FFBA6F]">
+              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
                 Markalar
               </span>
             </h1>
-            <p className="font-['Inter',sans-serif] text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
-              Türkiye&apos;nin ve dünyanın en sevilen markalarıyla çalışıyor, sana en yüksek komisyon oranlarını sunuyoruz.
+
+            <p className="mx-auto max-w-2xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
+              Türkiye&apos;nin ve dünyanın sevilen markalarıyla çalışıyor, sana yüksek komisyon ve geniş kampanya erişimi sunuyoruz.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Filter + Brand Grid */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-20 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#d21027] opacity-5 blur-[150px] rounded-full" />
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="flex flex-wrap gap-2 sm:gap-3 mb-10 sm:mb-12">
+      <section className="relative bg-[#0a0a0a] py-16 sm:py-24">
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d21027] opacity-5 blur-[150px]" />
+        <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
+          <div className="mb-10 flex flex-wrap gap-2 sm:gap-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`font-['Inter',sans-serif] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-sm font-medium transition-all ${
+                className={`font-['Inter',sans-serif] rounded-full px-4 py-2 text-sm font-medium transition-all sm:px-5 sm:py-2.5 ${
                   activeCategory === cat.id
                     ? "bg-gradient-to-r from-[#d21027] to-[#EB5200] text-white shadow-[0_0_20px_rgba(210,16,39,0.3)]"
-                    : "bg-white/5 text-white/60 border border-white/10 hover:border-white/20 hover:text-white"
+                    : "border border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:text-white"
                 }`}
               >
                 {cat.label}
               </button>
             ))}
           </div>
-          <p className="font-['Inter',sans-serif] text-white/40 text-sm mb-6">{filteredBrands.length} marka bulundu</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <p className="mb-6 font-['Inter',sans-serif] text-sm text-white/40">{filteredBrands.length} marka bulundu</p>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredBrands.map((brand, index) => (
               <BrandCard key={brand.id} brand={brand} index={index} />
             ))}
           </div>
+
           {filteredBrands.length === 0 && (
-            <div className="text-center py-20">
+            <div className="py-20 text-center">
               <Store className="w-12 h-12 text-white/20 mx-auto mb-4" />
-              <p className="font-['Inter',sans-serif] text-white/40 text-lg">Bu kategoride henüz marka bulunmuyor.</p>
+              <p className="font-['Inter',sans-serif] text-lg text-white/40">Bu kategoride henüz marka bulunmuyor.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-black py-16 sm:py-20 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="border-t border-white/5 bg-black py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {[
-              { value: `${brands.length}+`, label: "Partner Marka" },
-              { value: "%15", label: "Ortalama Komisyon" },
-              { value: "200+", label: "Aktif Kampanya" },
-              { value: "₺12M+", label: "Ödenen Komisyon" },
+              { value: `${brands.length}+`, label: "Partner Marka", icon: <Building2 className="h-6 w-6 text-[#d21027]" /> },
+              { value: "200+", label: "Aktif Kampanya & Koleksiyon", icon: <Megaphone className="h-6 w-6 text-[#d21027]" /> },
+              { value: "50K+", label: "Oluşturulan Link", icon: <Link className="h-6 w-6 text-[#d21027]" /> },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -322,10 +379,15 @@ export default function MarkalariPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d21027] to-[#EB5200] mb-2">
+                <div className="mb-4 flex justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[14px] border border-[#d21027]/20 bg-gradient-to-br from-[#d21027]/20 to-[#EB5200]/10">
+                    {stat.icon}
+                  </div>
+                </div>
+                <div className="mb-1 text-2xl font-bold tracking-wide text-white sm:text-3xl">
                   {stat.value}
                 </div>
-                <div className="font-['Inter',sans-serif] text-white/60 font-medium text-sm sm:text-base">
+                <div className="font-['Inter',sans-serif] text-sm font-medium text-white/50 sm:text-base">
                   {stat.label}
                 </div>
               </motion.div>
@@ -334,29 +396,30 @@ export default function MarkalariPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-24 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#d21027] opacity-10 blur-[150px] rounded-full" />
-        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 text-center">
-          <h2 className="font-['Inter',sans-serif] text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+      <section className="relative overflow-hidden bg-[#0a0a0a] py-16 sm:py-24">
+        <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d21027] opacity-10 blur-[150px]" />
+        <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-8">
+          <h2 className="mb-4 font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             Favori Markanla{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB5200] to-[#FFBA6F]">
+            <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
               Kazanmaya Başla
             </span>
           </h2>
-          <p className="font-['Inter',sans-serif] text-white/60 text-base sm:text-lg mb-8 max-w-xl mx-auto">
+          <p className="mx-auto mb-8 max-w-xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
             Hemen ücretsiz kaydol, markaları keşfet ve affiliate bağlantılarını paylaşarak kazanç sağla.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
+              type="button"
               onClick={() => window.open(getStoreUrl(), "_blank", "noopener,noreferrer")}
-              className="bg-gradient-to-r from-[#d21027] to-[#EB5200] text-white px-8 py-4 rounded-full font-bold text-base hover:shadow-[0_0_30px_rgba(210,16,39,0.5)] transition-all font-['Inter',sans-serif]"
+              className="bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-4 rounded-full font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)]"
             >
               Ücretsiz Başla
             </button>
             <button
+              type="button"
               onClick={() => setActiveCategory("tumu")}
-              className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-white/20 transition-all font-['Inter',sans-serif]"
+              className="border border-white/20 bg-white/10 px-8 py-4 rounded-full font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:bg-white/20"
             >
               Tüm Kampanyaları Gör
             </button>

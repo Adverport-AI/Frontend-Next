@@ -163,11 +163,11 @@ export default function YardimMerkeziPage() {
             </div>
 
             <h1 className="mb-5 font-['Inter',sans-serif] text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              Adverport'u kullanmak için
-              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent"> ihtiyacınız olan her şey</span>
+              Nasıl
+              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent"> Yardımcı Olabiliriz</span>?
             </h1>
             <p className="mx-auto max-w-2xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
-              Başlangıç rehberlerinden ödeme akışlarına kadar destek konularını tek yerde topladık.
+              Adverport'u en verimli şekilde kullanmanız için ihtiyacınız olan her şey burada.
             </p>
 
             <div className="relative mx-auto mt-8 max-w-2xl">
@@ -176,7 +176,7 @@ export default function YardimMerkeziPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Yardım konusu arayın..."
+                placeholder="Yardım makalesi arayın..."
                 className="w-full rounded-[20px] border border-white/10 bg-white/[0.06] py-4 pl-12 pr-4 font-['Inter',sans-serif] text-white outline-none transition-colors placeholder:text-white/30 focus:border-[#EB5200]/50"
               />
             </div>

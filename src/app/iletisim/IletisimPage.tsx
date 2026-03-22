@@ -15,18 +15,18 @@ const contactMethods = [
     action: "mailto:destek@adverport.com",
   },
   {
-    icon: <Phone className="w-6 h-6" />,
-    title: "Telefon",
-    description: "Hafta içi 09:00 - 18:00",
-    value: "+90 (212) 555 0123",
-    action: "tel:+902125550123",
-  },
-  {
     icon: <MessageCircle className="w-6 h-6" />,
     title: "Canlı Destek",
-    description: "7/24 canlı destek hattı",
-    value: "Hemen Başla",
-    action: "#",
+    description: "Çalışma saatleri içinde",
+    value: "WhatsApp ile iletişim",
+    action: "https://wa.me/905555555555",
+  },
+  {
+    icon: <Send className="w-6 h-6" />,
+    title: "Mesaj",
+    description: "Formumuzu doldurun",
+    value: "Mesaj gönderin",
+    action: "#mesaj-formu",
   },
   {
     icon: <MapPin className="w-6 h-6" />,
@@ -109,6 +109,8 @@ export default function IletisimPage() {
               <motion.a
                 key={method.title}
                 href={method.action}
+                target={method.action.startsWith("https://wa.me") ? "_blank" : undefined}
+                rel={method.action.startsWith("https://wa.me") ? "noopener noreferrer" : undefined}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -129,7 +131,7 @@ export default function IletisimPage() {
       {/* Contact Form + Info */}
       <section className="bg-black py-16 sm:py-24 relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#d21027] opacity-5 blur-[150px] rounded-full" />
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8">
+        <div id="mesaj-formu" className="relative max-w-7xl mx-auto px-6 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3">
