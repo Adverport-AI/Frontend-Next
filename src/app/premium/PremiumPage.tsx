@@ -20,7 +20,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CtaSection } from "../components/CtaSection";
-import { openPreferredStore } from "../components/StoreButtons";
+import { openGooglePlayStore, openPreferredStore } from "../components/StoreButtons";
 
 const benefits = [
   { icon: <Crown className="h-7 w-7" />, title: "Premium Kampanyalar", description: "Sadece premium üyelere özel, yüksek komisyonlu kampanyalara erişim." },
@@ -127,7 +127,7 @@ function Hero() {
                     <span className="rounded-full bg-[#FFBA6F]/20 px-2 py-0.5 text-xs font-bold text-[#FFBA6F]">-20%</span>
                   </button>
                 </div>
-                <button type="button" onClick={openPreferredStore} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-2.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/10">
+                <button type="button" onClick={openGooglePlayStore} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-2.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/10">
                   Premium'a Geç
                   <ArrowRight className="h-4 w-4" />
                 </button>
@@ -174,7 +174,7 @@ function Hero() {
                   ))}
                 </div>
 
-                <motion.button type="button" onClick={openPreferredStore} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#d21027] to-[#EB5200] py-4 font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:shadow-[0_0_40px_rgba(210,16,39,0.4)]">
+                <motion.button type="button" onClick={openGooglePlayStore} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#d21027] to-[#EB5200] py-4 font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:shadow-[0_0_40px_rgba(210,16,39,0.4)]">
                   Premium'a Geç
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </motion.button>
@@ -247,7 +247,7 @@ function PricingCards() {
                 <span className="font-['Inter',sans-serif] text-5xl font-bold text-white">₺99.99</span>
                 <span className="font-['Inter',sans-serif] text-white/60">/ay</span>
               </div>
-              <button type="button" onClick={openPreferredStore} className="w-full rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)] sm:w-auto">
+              <button type="button" onClick={openGooglePlayStore} className="w-full rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)] sm:w-auto">
                 Premium'a Geç
               </button>
             </div>
@@ -326,7 +326,7 @@ function ComparisonTable() {
           <button type="button" onClick={openPreferredStore} className="rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-center font-['Inter',sans-serif] font-bold text-white transition-all hover:bg-white/15">
             Ücretsiz Başla
           </button>
-          <button type="button" onClick={openPreferredStore} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)]">
+          <button type="button" onClick={openGooglePlayStore} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)]">
             Premium'a Geç <ArrowRight className="h-4 w-4" />
           </button>
         </div>

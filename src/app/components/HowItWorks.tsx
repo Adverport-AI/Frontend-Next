@@ -1,4 +1,7 @@
+"use client";
+
 import { Download, Eye, Wallet } from "lucide-react";
+import { openGooglePlayStore } from "./StoreButtons";
 
 export function HowItWorks() {
   const steps = [
@@ -98,7 +101,7 @@ export function HowItWorks() {
 
         {/* CTA */}
         <div className="text-center mt-16">
-          <button className="bg-gradient-to-r from-[#d21027] to-[#e75f01] text-white px-10 py-4 rounded-[16px] text-[18px] font-semibold shadow-[0px_4px_19.3px_6px_rgba(185,5,5,0.35)] hover:shadow-[0px_6px_24px_8px_rgba(185,5,5,0.5)] transition-all">
+          <button type="button" onClick={openGooglePlayStore} className="bg-gradient-to-r from-[#d21027] to-[#e75f01] text-white px-10 py-4 rounded-[16px] text-[18px] font-semibold shadow-[0px_4px_19.3px_6px_rgba(185,5,5,0.35)] hover:shadow-[0px_6px_24px_8px_rgba(185,5,5,0.5)] transition-all">
             Hemen Başla
           </button>
         </div>

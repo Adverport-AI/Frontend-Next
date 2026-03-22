@@ -15,7 +15,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CtaSection } from "../components/CtaSection";
-import { openPreferredStore } from "../components/StoreButtons";
+import { openGooglePlayStore } from "../components/StoreButtons";
 
 const steps = [
   {
@@ -76,7 +76,7 @@ export default function InfluencerPage() {
       <section className="relative overflow-hidden bg-black pb-16 pt-[140px] sm:pb-24 sm:pt-[160px]">
         <div className="absolute left-1/2 top-1/4 h-[620px] w-[720px] -translate-x-1/2 rounded-full bg-[#d21027] opacity-[0.08] blur-[220px]" />
         <div className="relative mx-auto max-w-6xl px-6 text-center sm:px-8">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d21027]/30 bg-gradient-to-r from-[#d21027]/20 to-[#EB5200]/10 px-5 py-2">
               <Megaphone className="h-4 w-4 text-[#FFBA6F]" />
               <span className="font-['Inter',sans-serif] text-sm font-semibold uppercase tracking-wide text-[#FFBA6F]">
@@ -95,7 +95,7 @@ export default function InfluencerPage() {
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <button
                 type="button"
-                onClick={openPreferredStore}
+                onClick={openGooglePlayStore}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.45)]"
               >
                 Hemen Başla
@@ -103,7 +103,7 @@ export default function InfluencerPage() {
               </button>
               <button
                 type="button"
-                onClick={openPreferredStore}
+                onClick={openGooglePlayStore}
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-colors hover:bg-white/10"
               >
                 Premium&apos;u Uygulamada Gör

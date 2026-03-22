@@ -20,7 +20,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CtaSection } from "../components/CtaSection";
-import { openPreferredStore } from "../components/StoreButtons";
+import { openGooglePlayStore } from "../components/StoreButtons";
 
 const mainFeatures = [
   {
@@ -86,7 +86,7 @@ export default function OzelliklerPage() {
           <div className="absolute bottom-0 right-1/3 h-[400px] w-[400px] rounded-full bg-[#EB5200] opacity-[0.08] blur-[150px]" />
 
           <div className="relative mx-auto max-w-7xl px-6 text-center sm:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <div className="mb-6 inline-block rounded-[12px] border border-[#e75f01] bg-[#1e1e1e] px-4 py-2">
                 <span className="font-['Inter',sans-serif] text-sm font-semibold text-white sm:text-base">Platform Özellikleri</span>
               </div>
@@ -216,7 +216,7 @@ export default function OzelliklerPage() {
             <div className="mt-10 text-center">
               <button
                 type="button"
-                onClick={openPreferredStore}
+                onClick={openGooglePlayStore}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#8B1A1A] via-[#d21027] to-[#EB5200] px-8 py-3.5 font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.4)]"
               >
                 Premium'a Geç

@@ -290,16 +290,16 @@ export default function SssPage() {
           <p className="mx-auto mb-8 max-w-md font-['Inter',sans-serif] text-sm leading-relaxed text-white/50 sm:text-base">
             Aradığınız cevabı bulamadıysanız destek ekibimizle iletişime geçin.
           </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
               href="/iletisim"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.4)]"
+              className="font-['Inter',sans-serif] text-sm font-medium text-white/70 transition-colors hover:text-white"
             >
               İletişime Geç
             </Link>
             <Link
               href="/yardim-merkezi"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-3.5 font-['Inter',sans-serif] text-sm font-semibold text-white transition-colors hover:bg-white/10 hover:border-white/20"
+              className="font-['Inter',sans-serif] text-sm font-medium text-white/70 transition-colors hover:text-white"
             >
               Yardım Merkezi
             </Link>

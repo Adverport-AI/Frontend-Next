@@ -7,7 +7,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CtaSection } from "../components/CtaSection";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { openPreferredStore } from "../components/StoreButtons";
+import { openGooglePlayStore } from "../components/StoreButtons";
 import svgAyakkabiDunyasiPaths from "../../imports/svg-kx1ychoqgl";
 
 const imgBeymenLogo = "/assets/475353305f5614af0afb11ccf4b79302062766a8.png";
@@ -229,12 +229,12 @@ function BrandCard({ brand, index }: { brand: Brand; index: number }) {
   const coverImage = getCategoryImage(brand);
 
   const handleClick = () => {
-    openPreferredStore();
+    openGooglePlayStore();
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.03 }}
       onClick={handleClick}
@@ -293,7 +293,7 @@ export default function MarkalariPage() {
         <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-[#EB5200] opacity-10 blur-[150px]" />
         <div className="relative mx-auto max-w-7xl px-6 text-center sm:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
