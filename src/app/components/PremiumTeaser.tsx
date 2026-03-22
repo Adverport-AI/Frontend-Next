@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, Crown, Shield, Sparkles, TrendingUp, Zap } from "lucide-react";
-import { openPreferredStore } from "./StoreButtons";
+import { openGooglePlayStore } from "./StoreButtons";
 
 const highlights = [
   {
@@ -94,7 +94,7 @@ export default function PremiumTeaser() {
           >
             <button
               type="button"
-              onClick={openPreferredStore}
+              onClick={openGooglePlayStore}
               className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 text-sm font-semibold text-white transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(210,16,39,0.4)] sm:px-10 sm:py-4 sm:text-base"
             >
               <span>Premium Planlari Incele</span>

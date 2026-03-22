@@ -2,23 +2,21 @@
 
 import type { ReactNode } from "react";
 import svgPaths from "../../imports/svg-05n1f58eeq";
-
-export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.mobile.adverport";
-export const APP_STORE_URL = "https://apps.apple.com/us/app/adverport/id1616799187";
-
-function isAppleDevice() {
-  if (typeof navigator === "undefined") return false;
-  const userAgent = navigator.userAgent || navigator.vendor;
-  return /iPad|iPhone|iPod/i.test(userAgent) || (/Macintosh/i.test(userAgent) && typeof document !== "undefined" && "ontouchend" in document);
-}
-
-export function getPreferredStoreUrl() {
-  return isAppleDevice() ? APP_STORE_URL : PLAY_STORE_URL;
-}
+import { APP_STORE_URL, PLAY_STORE_URL, STORE_REDIRECT_PATH } from "../../lib/storeRedirect";
 
 export function openPreferredStore() {
   if (typeof window === "undefined") return;
-  window.open(getPreferredStoreUrl(), "_blank", "noopener,noreferrer");
+  window.location.assign(STORE_REDIRECT_PATH);
+}
+
+export function openGooglePlayStore() {
+  if (typeof window === "undefined") return;
+  window.location.assign(PLAY_STORE_URL);
+}
+
+export function openAppStore() {
+  if (typeof window === "undefined") return;
+  window.location.assign(APP_STORE_URL);
 }
 
 function GooglePlayIcon() {
@@ -69,7 +67,7 @@ function StoreButtonShell({
 
 export function GooglePlayButtonWrapper() {
   return (
-    <StoreButtonShell href={PLAY_STORE_URL} label="Google Play üzerinden indir">
+    <StoreButtonShell href={PLAY_STORE_URL} label="Adverport uygulamasını Google Play'den indir">
       <div className="flex gap-[6px] md:gap-[10px] lg:gap-[12px] items-center justify-center h-full px-2.5 md:px-3.5 lg:px-4">
         <div className="bg-white rounded-[6px] md:rounded-[8px] lg:rounded-[10px] shrink-0 size-[22px] md:size-[28px] lg:size-[32px] flex items-center justify-center">
           <GooglePlayIcon />
@@ -85,7 +83,7 @@ export function GooglePlayButtonWrapper() {
 
 export function AppStoreButtonWrapper() {
   return (
-    <StoreButtonShell href={APP_STORE_URL} label="App Store üzerinden indir">
+    <StoreButtonShell href={APP_STORE_URL} label="Adverport uygulamasını App Store'dan indir">
       <div className="flex gap-[6px] md:gap-[10px] lg:gap-[12px] items-center justify-center h-full px-2.5 md:px-3.5 lg:px-4">
         <div className="bg-white rounded-[6px] md:rounded-[8px] lg:rounded-[10px] shrink-0 size-[22px] md:size-[28px] lg:size-[32px] flex items-center justify-center">
           <AppStoreIcon />

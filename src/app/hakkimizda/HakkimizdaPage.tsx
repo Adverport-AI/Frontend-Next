@@ -70,7 +70,7 @@ export default function HakkimizdaPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-3xl text-center"

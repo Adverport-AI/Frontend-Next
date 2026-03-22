@@ -1,3 +1,9 @@
+"use client";
+
+import { imgScreen, imgScreen2 } from "../../imports/svg-6myxf";
+import svgPaths from "../../imports/svg-2ykxxdmmup";
+import { openGooglePlayStore } from "./StoreButtons";
+
 const imgPolygon1 = "/assets/5d48399b972281369c0877ffc30641392cc0dda2.png";
 const imgStar1 = "/assets/03df501c61645a5d2f265de3d9930eb01a0e04d7.png";
 const imgEllipse3 = "/assets/437429ee8b74c5985f1fe85250ee1e7574819fb0.png";
@@ -14,8 +20,6 @@ const imgShadow2 = "/assets/66e6e0b901a070ec84dcd39bdf5f32ca37c4c8e4.png";
 const imgIPhone12Pro1 = "/assets/7c0b3043ac9af54679174f72f0d75ec8900572a6.png";
 const imgScreen3 = "/assets/ad6922956a52200ed075b526020279beb0488245.png";
 const imgChangeThis1 = "/assets/898fde952be2522964e470e0daf5bcf0ebc8e53d.png";
-import { imgScreen, imgScreen2 } from "../../imports/svg-6myxf";
-import svgPaths from "../../imports/svg-2ykxxdmmup";
 
 export function Hero() {
   return (
@@ -99,10 +103,10 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-[#d21027] to-[#e75f01] text-white px-8 py-4 rounded-[16px] text-[18px] font-semibold shadow-[0px_4px_19.3px_6px_rgba(185,5,5,0.35)] hover:shadow-[0px_6px_24px_8px_rgba(185,5,5,0.5)] transition-all">
+              <button type="button" onClick={openGooglePlayStore} className="bg-gradient-to-r from-[#d21027] to-[#e75f01] text-white px-8 py-4 rounded-[16px] text-[18px] font-semibold shadow-[0px_4px_19.3px_6px_rgba(185,5,5,0.35)] hover:shadow-[0px_6px_24px_8px_rgba(185,5,5,0.5)] transition-all">
                 Uygulamayı İndir
               </button>
-              <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-[16px] text-[18px] font-semibold hover:bg-white/20 transition-all">
+              <button type="button" onClick={openGooglePlayStore} className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-[16px] text-[18px] font-semibold hover:bg-white/20 transition-all">
                 Daha Fazla Bilgi
               </button>
             </div>

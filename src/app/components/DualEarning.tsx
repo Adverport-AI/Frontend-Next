@@ -1,4 +1,7 @@
+"use client";
+
 import { TrendingUp, Share2 } from "lucide-react";
+import { openGooglePlayStore } from "./StoreButtons";
 
 export function DualEarning() {
   return (
@@ -159,7 +162,7 @@ export function DualEarning() {
                 Hem reklam izle hem de arkadaşlarını davet et. Kazancını maksimize et.
               </p>
             </div>
-            <button className="shrink-0 bg-white text-[#d21027] px-8 py-4 rounded-[16px] text-[18px] font-semibold hover:bg-white/90 transition-all shadow-[0px_4px_24px_0px_rgba(0,0,0,0.2)]">
+            <button type="button" onClick={openGooglePlayStore} className="shrink-0 bg-white text-[#d21027] px-8 py-4 rounded-[16px] text-[18px] font-semibold hover:bg-white/90 transition-all shadow-[0px_4px_24px_0px_rgba(0,0,0,0.2)]">
               Hemen Başla
             </button>
           </div>

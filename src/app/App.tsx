@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   BadgePercent,
@@ -221,18 +221,40 @@ function SocialProof() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const autoplayRef = useRef<number | null>(null);
+
+  const clearAutoplay = () => {
+    if (autoplayRef.current !== null) {
+      window.clearTimeout(autoplayRef.current);
+      autoplayRef.current = null;
+    }
+  };
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
+    clearAutoplay();
+
+    autoplayRef.current = window.setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
-    return () => window.clearTimeout(timeout);
+    return clearAutoplay;
   }, [currentIndex, testimonials.length]);
 
-  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  const goNext = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  const goTo = (index: number) => setCurrentIndex(index);
+  const goPrev = () => {
+    clearAutoplay();
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goNext = () => {
+    clearAutoplay();
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const goTo = (index: number) => {
+    if (index === currentIndex) return;
+    clearAutoplay();
+    setCurrentIndex(index);
+  };
 
   const renderMetricIcon = (iconType: (typeof metrics)[number]["iconType"]) => {
     if (iconType === "building") return <Building2 className="h-6 w-6 text-[#d21027]" />;
@@ -274,19 +296,24 @@ function SocialProof() {
           </div>
 
           <div className="relative">
-            <div className="overflow-hidden">
+            <div className="grid overflow-hidden">
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
                   key={currentIndex}
-                  initial={{ opacity: 0, x: 36 }}
+                  initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -36 }}
-                  transition={{ duration: 0.32, ease: "easeOut" }}
-                  className="rounded-3xl border border-white/10 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] p-8 shadow-[0px_25px_50px_0px_rgba(0,0,0,0.25)] sm:p-12"
+                  exit={{ opacity: 0, x: -60 }}
+                  transition={{ duration: 0.5 }}
+                  className="col-start-1 row-start-1 rounded-3xl border border-white/10 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] p-8 shadow-[0px_25px_50px_0px_rgba(0,0,0,0.25)] sm:min-h-[330px] sm:p-12"
                 >
                   <div className="mb-6 flex justify-center gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className={`h-5 w-5 ${i < testimonials[currentIndex].rating ? "fill-[#C0001A] text-[#C0001A]" : "text-white/20"}`} />
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star
+                        key={index}
+                        className={`h-5 w-5 ${
+                          index < testimonials[currentIndex].rating ? "fill-[#C0001A] text-[#C0001A]" : "text-white/20"
+                        }`}
+                      />
                     ))}
                   </div>
 
@@ -296,11 +323,20 @@ function SocialProof() {
 
                   <div className="flex items-center justify-center gap-4">
                     <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-full border-2 border-[#C0001A]/30">
-                      <img src={testimonials[currentIndex].image} alt={testimonials[currentIndex].name} className="h-full w-full object-cover" />
+                      <img
+                        src={testimonials[currentIndex].image}
+                        alt={testimonials[currentIndex].name}
+                        className="h-full w-full object-cover"
+                        loading="eager"
+                      />
                     </div>
                     <div>
-                      <p className="font-['Inter',sans-serif] text-base font-semibold text-white">{testimonials[currentIndex].name}</p>
-                      <p className="font-['Inter',sans-serif] text-sm text-white/60">{testimonials[currentIndex].role}</p>
+                      <p className="font-['Inter',sans-serif] text-base font-semibold text-white">
+                        {testimonials[currentIndex].name}
+                      </p>
+                      <p className="font-['Inter',sans-serif] text-sm text-white/60">
+                        {testimonials[currentIndex].role}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
