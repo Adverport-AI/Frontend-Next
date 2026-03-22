@@ -5,3 +5,9 @@ node_modules
 .claude
 .env.local
 .env*.local
+handoff/figma-make/*
+!handoff/figma-make/README.md
+scripts/
+tsconfig.tsbuildinfo
+dist/
+.sanity/

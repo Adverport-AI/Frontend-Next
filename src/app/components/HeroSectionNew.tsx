@@ -11,7 +11,8 @@ const imgEllipse5 = "/assets/c88663dccdf3a28c9a0d7e798c42187df5a53958.png";
 const imgEllipse6 = "/assets/a3712302d456e6571b800833a2072a80ca4be17a.png";
 const imgEllipse7 = "/assets/2a391ea3fd3d512bdbd2b47ea54d89c15a69b08f.png";
 import { GooglePlayButtonWrapper, AppStoreButtonWrapper } from './StoreButtons';
-import PhoneMockupWrapper from './PhoneMockupWrapper';
+import { TypingRotator } from './TypingRotator';
+import PhoneWithFloatingCards from './PhoneWithFloatingCards';
 
 export default function HeroSectionNew() {
   return (
@@ -131,7 +132,17 @@ export default function HeroSectionNew() {
             {/* Main Title - Hybrid SVG + HTML */}
             <div className="relative text-center">
               {/* Title Text with responsive sizing */}
-              <h1 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[52px] lg:text-[68px] leading-[1.3] tracking-[-0.01em]"><span className="text-white">Alışveriş Yap, Paylaş</span><br /><span className="relative inline-block"><span className="relative z-10 bg-gradient-to-b from-[#FFBA6F] to-[#EB5200] bg-clip-text text-transparent">Kazanç</span><span className="absolute inset-0 border border-[#f37100] bg-gradient-to-br from-[rgba(234,99,1,0.67)] to-[rgba(255,255,255,0.67)] rounded-2xl -mx-[3px] md:-mx-[5px] lg:-mx-2 -my-[1px] md:-my-[1.5px] lg:-my-[2px] opacity-36" /></span><span className="text-white"> <span className="font-bold">Sağla</span></span></h1>
+              <h1 className="font-['Inter',sans-serif] font-bold text-[36px] md:text-[52px] lg:text-[68px] leading-[1.3] tracking-[-0.01em]">
+                <span className="text-white">Alışveriş Yap</span>
+                <br />
+                <span className="text-white"><TypingRotator /> Paylaş</span>
+                <br />
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-gradient-to-b from-[#FFBA6F] to-[#EB5200] bg-clip-text text-transparent">Kazanç</span>
+                  <span className="absolute inset-0 border border-[#f37100] bg-gradient-to-br from-[rgba(234,99,1,0.67)] to-[rgba(255,255,255,0.67)] rounded-2xl -mx-[3px] md:-mx-[5px] lg:-mx-2 -my-[1px] md:-my-[1.5px] lg:-my-[2px] opacity-36" />
+                </span>
+                <span className="text-white"> <span className="font-bold">Sağla</span></span>
+              </h1>
             </div>
           </div>
 
@@ -143,12 +154,12 @@ export default function HeroSectionNew() {
           {/* Store Buttons Container */}
           <div className="flex flex-row items-center gap-2.5 md:gap-3 lg:gap-4 mt-4 md:mt-5 lg:mt-6">
             {/* Google Play Button */}
-            <div className="w-[170px] md:w-[210px] lg:w-[240.576px] h-[50px] md:h-[62px] lg:h-[70.99px] cursor-pointer hover:scale-105 transition-transform">
+            <div className="w-[140px] md:w-[170px] lg:w-[195px] h-[42px] md:h-[50px] lg:h-[56px]">
               <GooglePlayButtonWrapper />
             </div>
 
             {/* App Store Button */}
-            <div className="w-[170px] md:w-[210px] lg:w-[240.576px] h-[50px] md:h-[62px] lg:h-[70.99px] cursor-pointer hover:scale-105 transition-transform">
+            <div className="w-[140px] md:w-[170px] lg:w-[195px] h-[42px] md:h-[50px] lg:h-[56px]">
               <AppStoreButtonWrapper />
             </div>
           </div>
@@ -166,13 +177,9 @@ export default function HeroSectionNew() {
           </div>
 
           {/* Phone Mockups */}
-          <div className="w-full flex justify-center mt-8 sm:mt-8 md:mt-8 lg:mt-10 mb-0">
-            <div className="w-[280px] min-[400px]:w-[360px] min-[640px]:w-[620px] md:w-[650px] lg:w-[944px]">
-              <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
-                <div className="absolute inset-0">
-                  <PhoneMockupWrapper />
-                </div>
-              </div>
+          <div className="w-full flex justify-center mt-6 sm:mt-8 md:mt-4 lg:mt-10 mb-0">
+            <div className="w-full max-w-[900px] lg:max-w-[1100px]">
+              <PhoneWithFloatingCards />
             </div>
           </div>
         </div>
