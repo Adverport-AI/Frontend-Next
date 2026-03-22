@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 import { Calendar, FileText } from "lucide-react";
@@ -156,21 +155,6 @@ export default async function Page({
 
           <div className="rounded-[32px] border border-white/10 bg-gradient-to-b from-white/[0.08] to-white/[0.02] p-6 sm:p-10">
             {renderMarkdown(pageData.content)}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/yardim-merkezi"
-              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-5 py-3 font-['Inter',sans-serif] text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Yardım Merkezi
-            </Link>
-            <Link
-              href="/iletisim"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-5 py-3 font-['Inter',sans-serif] text-sm font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.35)]"
-            >
-              İletişim
-            </Link>
           </div>
         </div>
       </section>

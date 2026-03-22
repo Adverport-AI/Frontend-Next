@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -15,6 +14,8 @@ import {
 } from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { CtaSection } from "../components/CtaSection";
+import { openPreferredStore } from "../components/StoreButtons";
 
 const steps = [
   {
@@ -92,19 +93,21 @@ export default function InfluencerPage() {
               Takipçilerinle uyumlu markaları görünür kıl, içerik üretimini sürdürülebilir bir gelir modeline dönüştür.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/iletisim"
+              <button
+                type="button"
+                onClick={openPreferredStore}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.45)]"
               >
                 Hemen Başla
                 <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/premium"
+              </button>
+              <button
+                type="button"
+                onClick={openPreferredStore}
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-colors hover:bg-white/10"
               >
-                Premium'u İncele
-              </Link>
+                Premium&apos;u Uygulamada Gör
+              </button>
             </div>
           </motion.div>
         </div>
@@ -215,36 +218,11 @@ export default function InfluencerPage() {
         </div>
       </section>
 
-      <section className="bg-black py-16 sm:py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center sm:px-8">
-          <div className="rounded-[36px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] px-6 py-10 sm:px-10 sm:py-14">
-            <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-4xl">
-              Influencer olarak kazanmaya{' '}
-              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
-                bugün başla
-              </span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl font-['Inter',sans-serif] text-sm leading-relaxed text-white/60 sm:text-base">
-              İçerik üretimini gelirle birleştirmek için doğru kampanya, görünür veri ve güçlü partner ağına tek yerden ulaş.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/iletisim"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.35)]"
-              >
-                Ekiple Konuş
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/markalar"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-colors hover:bg-white/10"
-              >
-                Markaları Gör
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Influencer Olarak"
+        highlight="Bugün Başla"
+        description="Uygulamayı indir, kampanyalara bağlan ve içerik üretimini doğrudan kazanca dönüştür."
+      />
 
       <Footer />
     </div>

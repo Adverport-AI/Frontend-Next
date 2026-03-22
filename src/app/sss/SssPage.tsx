@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { CtaSection } from "../components/CtaSection";
 
 type FaqCategoryId = "genel" | "kazanc" | "hesap" | "guvenlik" | "uygulama" | "premium";
 
@@ -305,6 +306,12 @@ export default function SssPage() {
           </div>
         </div>
       </section>
+
+      <CtaSection
+        title="Sorularını Netleştir,"
+        highlight="Şimdi Başla"
+        description="Yardım içeriklerini gördün; şimdi platformu deneyimleyip kendi akışını oluşturmaya başlayabilirsin."
+      />
 
       <Footer />
     </div>

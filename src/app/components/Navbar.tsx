@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import svgPaths from "../../imports/svg-2ykxxdmmup";
+import { openPreferredStore } from "./StoreButtons";
 
 type ActivePage = "markalar" | "ozellikler" | "premium" | "blog" | "iletisim";
 
@@ -44,18 +45,6 @@ function LogoWhite() {
 export function Navbar({ activePage }: NavbarProps = {}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleStoreRedirect = () => {
-    if (typeof navigator === "undefined") return;
-    const userAgent = navigator.userAgent || navigator.vendor;
-    if (/iPad|iPhone|iPod/.test(userAgent)) {
-      window.open("https://apps.apple.com/app/adverport", "_blank");
-    } else if (/android/i.test(userAgent)) {
-      window.open("https://play.google.com/store/apps/details?id=com.adverport", "_blank");
-    } else {
-      window.open("https://apps.apple.com/app/adverport", "_blank");
-    }
-  };
-
   return (
     <nav className="fixed top-[20px] sm:top-[20px] min-[800px]:top-[16px] left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] sm:w-[calc(100%-68px)] min-[800px]:max-w-[780px] lg:max-w-[860px]">
       <div className="bg-gradient-to-r from-[#d21027] from-[40%] to-black rounded-[18px] sm:rounded-[23px] min-[800px]:rounded-[16px] shadow-[0px_4px_19.3px_6px_rgba(185,5,5,0.35)] px-4 sm:px-6 min-[800px]:px-5 py-3 sm:py-4 min-[800px]:py-2.5">
@@ -86,7 +75,7 @@ export function Navbar({ activePage }: NavbarProps = {}) {
           {/* CTA Button - Desktop */}
           <div className="hidden min-[800px]:block">
             <button
-              onClick={handleStoreRedirect}
+              onClick={openPreferredStore}
               className="font-['Inter',sans-serif] bg-gradient-to-b from-[#d21027] to-[#6c0814] text-white px-5 py-2 rounded-[12px] font-semibold text-[14px] hover:shadow-[0_0_20px_rgba(210,16,39,0.5)] transition-all"
             >
               Ücretsiz Başla
@@ -96,7 +85,7 @@ export function Navbar({ activePage }: NavbarProps = {}) {
           {/* Mobile: CTA + Hamburger */}
           <div className="min-[800px]:hidden flex items-center gap-3">
             <button
-              onClick={handleStoreRedirect}
+              onClick={openPreferredStore}
               className="font-['Inter',sans-serif] bg-gradient-to-b from-[#d21027] to-[#6c0814] text-white px-4 py-2 rounded-[14px] font-semibold text-[13px] hover:shadow-[0_0_20px_rgba(210,16,39,0.5)] transition-all"
             >
               Ücretsiz Başla

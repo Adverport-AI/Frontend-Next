@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "motion/react";
 import {
   TrendingUp,
@@ -21,6 +20,7 @@ import {
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CtaSection } from "../components/CtaSection";
+import { openPreferredStore } from "../components/StoreButtons";
 
 const mainFeatures = [
   {
@@ -214,13 +214,14 @@ export default function OzelliklerPage() {
             </div>
 
             <div className="mt-10 text-center">
-              <Link
-                href="/premium"
+              <button
+                type="button"
+                onClick={openPreferredStore}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#8B1A1A] via-[#d21027] to-[#EB5200] px-8 py-3.5 font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.4)]"
               >
                 Premium'a Geç
                 <ArrowRight className="h-5 w-5" />
-              </Link>
+              </button>
             </div>
           </div>
         </section>

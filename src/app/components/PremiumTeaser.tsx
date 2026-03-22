@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight, Crown, Shield, Sparkles, TrendingUp, Zap } from "lucide-react";
+import { openPreferredStore } from "./StoreButtons";
 
 const highlights = [
   {
@@ -92,13 +92,14 @@ export default function PremiumTeaser() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            <Link
-              href="/premium"
+            <button
+              type="button"
+              onClick={openPreferredStore}
               className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-3.5 text-sm font-semibold text-white transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(210,16,39,0.4)] sm:px-10 sm:py-4 sm:text-base"
             >
               <span>Premium Planlari Incele</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </button>
             <p className="mt-4 font-['Inter',sans-serif] text-xs text-white/30">Ucretsiz plan ile de baslayabilirsin</p>
           </motion.div>
         </motion.div>

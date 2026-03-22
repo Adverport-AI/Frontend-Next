@@ -1,389 +1,308 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock, Headphones, ArrowRight, CheckCircle2 } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import {
+  ChevronDown,
+  Clock,
+  Headphones,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Send,
+} from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { ContactForm } from "../components/ContactForm";
+import { CtaSection } from "../components/CtaSection";
 
 const contactMethods = [
   {
-    icon: <Mail className="w-6 h-6" />,
+    icon: <Mail className="h-6 w-6" />,
     title: "E-posta",
     description: "Destek ekibimize e-posta gönderin",
     value: "destek@adverport.com",
-    action: "mailto:destek@adverport.com",
+    href: "mailto:destek@adverport.com",
   },
   {
-    icon: <MessageCircle className="w-6 h-6" />,
-    title: "Canlı Destek",
-    description: "Çalışma saatleri içinde",
-    value: "WhatsApp ile iletişim",
-    action: "https://wa.me/905555555555",
+    icon: <MessageCircle className="h-6 w-6" />,
+    title: "Yardım Merkezi",
+    description: "Sık sorulan konular için hızlı erişim",
+    value: "Yardım içeriklerini görüntüle",
+    href: "/yardim-merkezi",
   },
   {
-    icon: <Send className="w-6 h-6" />,
+    icon: <Send className="h-6 w-6" />,
     title: "Mesaj",
     description: "Formumuzu doldurun",
     value: "Mesaj gönderin",
-    action: "#mesaj-formu",
+    href: "#mesaj-formu",
   },
-  {
-    icon: <MapPin className="w-6 h-6" />,
-    title: "Ofis",
-    description: "Ziyaret etmek isterseniz",
-    value: "Levent, İstanbul",
-    action: "#",
-  },
-];
+] as const;
 
 const faqItems = [
   {
     q: "Hesabımı nasıl silebilirim?",
-    a: "Ayarlar > Hesap bölümünden hesap silme talebinde bulunabilirsiniz. Talebiniz 7 iş günü içinde işleme alınır.",
+    a: "Ayarlar > Hesap bölümünden hesap silme talebinde bulunabilirsiniz. Bekleyen ödeme ve doğrulama süreçleriniz tamamlandıktan sonra talebiniz işleme alınır.",
   },
   {
     q: "Ödemem gecikti, ne yapmalıyım?",
-    a: "Ödeme gecikmeleri nadiren yaşanır. destek@adverport.com adresine yazarak detaylı bilgi alabilirsiniz.",
+    a: "Ödeme durumunuzu yardım merkezi veya destek ekibimiz üzerinden paylaşın. Ekibimiz ilgili ödeme dönemini kontrol ederek size dönüş yapar.",
   },
   {
     q: "Marka başvurusu nasıl yapabilirim?",
-    a: "Marka olarak platforma katılmak için İş Ortaklığı formunu doldurmanız yeterlidir. Ekibimiz 48 saat içinde size dönüş yapar.",
+    a: "Marka iş birlikleri için iletişim formunu doldurabilir ya da isbirligi@adverport.com adresine kısa bir tanıtım gönderebilirsiniz.",
   },
   {
     q: "Premium üyeliği nasıl iptal ederim?",
-    a: "Ayarlar > Abonelik bölümünden Premium üyeliğinizi istediğiniz zaman iptal edebilirsiniz.",
+    a: "Aktif aboneliğinizi uygulama içi hesap ayarlarından yönetebilirsiniz. İptal sonrası mevcut dönem sonuna kadar premium haklarınız korunur.",
   },
-];
+] as const;
+
+function QuickFaqItem({
+  answer,
+  isOpen,
+  onToggle,
+  question,
+}: {
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  question: string;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent transition-colors hover:border-[#d21027]/40">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left sm:px-8"
+      >
+        <span className="font-['Inter',sans-serif] text-base font-semibold text-white">{question}</span>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#EB5200]"
+        >
+          <ChevronDown className="h-4 w-4" />
+        </motion.div>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen ? (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="border-t border-white/8 px-6 pb-5 pt-4 sm:px-8">
+              <p className="font-['Inter',sans-serif] text-sm leading-relaxed text-white/60">{answer}</p>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function IletisimPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "genel",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
-    <div className="bg-black min-h-screen">
+    <div className="min-h-screen bg-black">
       <Navbar activePage="iletisim" />
 
-      {/* Hero */}
-      <section className="relative bg-black pt-[140px] sm:pt-[160px] pb-16 sm:pb-20 overflow-hidden">
-        <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-[#d21027] opacity-10 blur-[200px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#EB5200] opacity-[0.08] blur-[150px] rounded-full" />
+      <section className="relative overflow-hidden bg-black pb-16 pt-[140px] sm:pb-20 sm:pt-[160px]">
+        <div className="absolute left-1/3 top-0 h-[500px] w-[500px] rounded-full bg-[#d21027] opacity-10 blur-[200px]" />
+        <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-[#EB5200] opacity-[0.08] blur-[150px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 text-center">
+        <div className="relative mx-auto max-w-7xl px-6 text-center sm:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-block bg-[#1e1e1e] border border-[#e75f01] rounded-[12px] px-4 py-2 mb-6">
-              <span className="font-['Inter',sans-serif] text-white font-semibold text-sm sm:text-base flex items-center gap-2">
-                <Headphones className="w-4 h-4 text-[#FFBA6F]" />
-                İletişim
-              </span>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-[12px] border border-[#e75f01] bg-[#1e1e1e] px-4 py-2">
+              <Headphones className="h-4 w-4 text-[#FFBA6F]" />
+              <span className="font-['Inter',sans-serif] text-sm font-semibold text-white sm:text-base">İletişim</span>
             </div>
-            <h1 className="font-['Inter',sans-serif] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5">
+
+            <h1 className="mb-5 font-['Inter',sans-serif] text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
               Bize{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB5200] to-[#FFBA6F]">
-                Ulaşın
+              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
+                ulaşın
               </span>
             </h1>
-            <p className="font-['Inter',sans-serif] text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
+
+            <p className="mx-auto max-w-2xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
               Sorularınız, önerileriniz veya iş birliği talepleriniz için bize ulaşın. En kısa sürede dönüş yapalım.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Methods */}
-      <section className="bg-[#0a0a0a] py-12 sm:py-16 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {contactMethods.map((method, index) => (
-              <motion.a
-                key={method.title}
-                href={method.action}
-                target={method.action.startsWith("https://wa.me") ? "_blank" : undefined}
-                rel={method.action.startsWith("https://wa.me") ? "noopener noreferrer" : undefined}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl p-6 hover:border-[#d21027]/40 transition-all group block"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-[#d21027] to-[#EB5200] rounded-xl flex items-center justify-center mb-4 text-white group-hover:scale-110 transition-transform">
-                  {method.icon}
-                </div>
-                <h3 className="font-['Inter',sans-serif] text-white font-bold text-base mb-1">{method.title}</h3>
-                <p className="font-['Inter',sans-serif] text-white/40 text-xs mb-3">{method.description}</p>
-                <p className="font-['Inter',sans-serif] text-[#FFBA6F] text-sm font-medium">{method.value}</p>
-              </motion.a>
-            ))}
+      <section className="border-b border-white/5 bg-[#0a0a0a] py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            {contactMethods.map((method, index) => {
+              if (method.href.startsWith("/")) {
+                return (
+                  <motion.div
+                    key={method.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className="group relative"
+                  >
+                    <Link href={method.href} className="absolute inset-0 z-10 rounded-2xl" aria-label={method.title} />
+                    <div className="rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6">
+                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#d21027] to-[#EB5200] text-white transition-transform group-hover:scale-105">
+                        {method.icon}
+                      </div>
+                      <h2 className="font-['Inter',sans-serif] text-base font-bold text-white">{method.title}</h2>
+                      <p className="mt-1 font-['Inter',sans-serif] text-xs text-white/45">{method.description}</p>
+                      <p className="mt-3 font-['Inter',sans-serif] text-sm font-medium text-[#FFBA6F]">{method.value}</p>
+                    </div>
+                  </motion.div>
+                );
+              }
+
+              return (
+                <motion.a
+                  key={method.title}
+                  href={method.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  className="group relative block rounded-2xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-colors hover:border-[#d21027]/40"
+                >
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/10 transition-colors group-hover:border-[#d21027]/40" />
+                  <div className="relative">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#d21027] to-[#EB5200] text-white transition-transform group-hover:scale-105">
+                      {method.icon}
+                    </div>
+                    <h2 className="font-['Inter',sans-serif] text-base font-bold text-white">{method.title}</h2>
+                    <p className="mt-1 font-['Inter',sans-serif] text-xs text-white/45">{method.description}</p>
+                    <p className="mt-3 font-['Inter',sans-serif] text-sm font-medium text-[#FFBA6F]">{method.value}</p>
+                  </div>
+                </motion.a>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Contact Form + Info */}
-      <section className="bg-black py-16 sm:py-24 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#d21027] opacity-5 blur-[150px] rounded-full" />
-        <div id="mesaj-formu" className="relative max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-            {/* Form */}
-            <div className="lg:col-span-3">
-              <h2 className="font-['Inter',sans-serif] text-2xl sm:text-3xl font-bold text-white mb-2">
-                Mesaj{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB5200] to-[#FFBA6F]">
-                  Gönderin
-                </span>
-              </h2>
-              <p className="font-['Inter',sans-serif] text-white/50 text-sm mb-8">
-                Formu doldurun, en kısa sürede size dönüş yapalım.
-              </p>
+      <section id="ofis" className="border-b border-white/5 bg-black py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 sm:px-8">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02]">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="relative h-[350px] sm:h-[420px] lg:min-h-[460px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.749!2d29.1172!3d40.9923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac790b07b5c6d%3A0x0!2zQXRhdMO8cmsgTWFoLiBFcnR1xJ9ydWwgR2F6aSBTay4gQXRhxZ9laGlyL8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1710000000000!5m2!1str!2str"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Adverport ofis konumu"
+                  className="absolute inset-0 h-full w-full"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-black/35" />
+              </div>
 
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-gradient-to-br from-[#d21027]/10 to-[#EB5200]/5 border border-[#d21027]/20 rounded-3xl p-10 text-center"
-                >
-                  <CheckCircle2 className="w-16 h-16 text-[#EB5200] mx-auto mb-4" />
-                  <h3 className="font-['Inter',sans-serif] text-white text-xl font-bold mb-2">Mesajınız Alındı!</h3>
-                  <p className="font-['Inter',sans-serif] text-white/60 text-sm mb-6">
-                    En kısa sürede size dönüş yapacağız.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: "", email: "", subject: "genel", message: "" });
-                    }}
-                    className="text-[#EB5200] hover:text-[#FFBA6F] font-medium text-sm font-['Inter',sans-serif]"
-                  >
-                    Yeni Mesaj Gönder
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="font-['Inter',sans-serif] text-white/70 text-sm mb-2 block">Ad Soyad</label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/20 focus:outline-none focus:border-[#d21027]/50 transition-colors font-['Inter',sans-serif] text-sm"
-                        placeholder="Adınız Soyadınız"
-                      />
+              <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+                <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl">Ofis adresimiz</h2>
+                <div className="mt-8 space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d21027] to-[#EB5200]">
+                      <MapPin className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <label className="font-['Inter',sans-serif] text-white/70 text-sm mb-2 block">E-posta</label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/20 focus:outline-none focus:border-[#d21027]/50 transition-colors font-['Inter',sans-serif] text-sm"
-                        placeholder="ornek@email.com"
-                      />
+                      <p className="font-['Inter',sans-serif] text-xs text-white/40">Adres</p>
+                      <p className="mt-1 font-['Inter',sans-serif] text-sm text-white">Atatürk Mahallesi Ertuğrul Gazi Sk.</p>
+                      <p className="font-['Inter',sans-serif] text-sm text-white">A Blok Apt. No: 2 E</p>
+                      <p className="font-['Inter',sans-serif] text-sm text-white/55">Ataşehir / İstanbul</p>
                     </div>
                   </div>
 
-                  <div>
-                    <label className="font-['Inter',sans-serif] text-white/70 text-sm mb-2 block">Konu</label>
-                    <select
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-[#d21027]/50 transition-colors font-['Inter',sans-serif] text-sm appearance-none"
-                    >
-                      <option value="genel" className="bg-[#1a1a1a]">Genel Soru</option>
-                      <option value="teknik" className="bg-[#1a1a1a]">Teknik Destek</option>
-                      <option value="odeme" className="bg-[#1a1a1a]">Ödeme Sorunları</option>
-                      <option value="isbirligi" className="bg-[#1a1a1a]">İş Birliği Talebi</option>
-                      <option value="oneri" className="bg-[#1a1a1a]">Öneri & Geri Bildirim</option>
-                    </select>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d21027] to-[#EB5200]">
+                      <Clock className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-['Inter',sans-serif] text-xs text-white/40">Çalışma Saatleri</p>
+                      <p className="mt-1 font-['Inter',sans-serif] text-sm text-white">Pazartesi - Cuma</p>
+                      <p className="font-['Inter',sans-serif] text-sm text-white/55">09:00 - 18:00</p>
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="font-['Inter',sans-serif] text-white/70 text-sm mb-2 block">Mesajınız</label>
-                    <textarea
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/20 focus:outline-none focus:border-[#d21027]/50 transition-colors font-['Inter',sans-serif] text-sm resize-none"
-                      placeholder="Mesajınızı buraya yazın..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="bg-gradient-to-r from-[#d21027] to-[#EB5200] text-white px-8 py-4 rounded-full font-bold text-base hover:shadow-[0_0_30px_rgba(210,16,39,0.5)] transition-all font-['Inter',sans-serif] inline-flex items-center gap-2"
-                  >
-                    <Send className="w-5 h-5" />
-                    Gönder
-                  </button>
-                </form>
-              )}
-            </div>
-
-            {/* Sidebar Info */}
-            <div className="lg:col-span-2 space-y-8">
-              <div className="bg-gradient-to-br from-[#d21027]/10 to-[#EB5200]/5 border border-[#d21027]/20 rounded-2xl p-6 sm:p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <Clock className="w-6 h-6 text-[#EB5200]" />
-                  <h3 className="font-['Inter',sans-serif] text-white font-bold text-base">Yanıt Süreleri</h3>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-['Inter',sans-serif] text-white/60 text-sm">E-posta</span>
-                    <span className="font-['Inter',sans-serif] text-white text-sm font-medium">24 saat içinde</span>
-                  </div>
-                  <div className="w-full h-px bg-white/10" />
-                  <div className="flex items-center justify-between">
-                    <span className="font-['Inter',sans-serif] text-white/60 text-sm">Canlı Destek</span>
-                    <span className="font-['Inter',sans-serif] text-white text-sm font-medium">Anında</span>
-                  </div>
-                  <div className="w-full h-px bg-white/10" />
-                  <div className="flex items-center justify-between">
-                    <span className="font-['Inter',sans-serif] text-white/60 text-sm">Telefon</span>
-                    <span className="font-['Inter',sans-serif] text-white text-sm font-medium">Hafta içi</span>
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#d21027] to-[#EB5200]">
+                      <Mail className="h-5 w-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-['Inter',sans-serif] text-xs text-white/40">E-posta</p>
+                      <p className="mt-1 font-['Inter',sans-serif] text-sm text-white">destek@adverport.com</p>
+                      <p className="font-['Inter',sans-serif] text-sm text-white/55">isbirligi@adverport.com</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8">
-                <h3 className="font-['Inter',sans-serif] text-white font-bold text-base mb-4">Bizi Takip Edin</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {["Instagram", "Twitter", "LinkedIn", "YouTube"].map((platform) => (
-                    <a
-                      key={platform}
-                      href="#"
-                      className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center text-white/60 text-sm font-medium hover:border-[#d21027]/40 hover:text-white transition-all font-['Inter',sans-serif]"
-                    >
-                      {platform}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl p-6 sm:p-8">
-                <h3 className="font-['Inter',sans-serif] text-white font-bold text-base mb-2">İş Ortaklığı</h3>
-                <p className="font-['Inter',sans-serif] text-white/50 text-sm mb-4">
-                  Markanızı platformumuza eklemek mi istiyorsunuz?
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1.5 text-[#EB5200] hover:text-[#FFBA6F] text-sm font-medium transition-colors font-['Inter',sans-serif]"
-                >
-                  Marka Başvurusu Yap <ArrowRight className="w-4 h-4" />
-                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quick FAQ */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-24 relative">
-        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-[#d21027] opacity-5 blur-[120px] rounded-full" />
-        <div className="relative max-w-3xl mx-auto px-6 sm:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-['Inter',sans-serif] text-2xl sm:text-3xl font-bold text-white mb-3">
-              Hızlı{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EB5200] to-[#FFBA6F]">
-                Yanıtlar
+      <section id="mesaj-formu" className="relative bg-[#0a0a0a] py-16 sm:py-24">
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d21027] opacity-5 blur-[150px]" />
+        <div className="relative mx-auto max-w-3xl px-6 sm:px-8">
+          <div className="text-center">
+            <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl">
+              Mesaj{" "}
+              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
+                gönderin
               </span>
             </h2>
-            <p className="font-['Inter',sans-serif] text-white/60 text-sm">En sık sorulan sorular ve cevapları</p>
+            <p className="mb-8 mt-2 font-['Inter',sans-serif] text-sm text-white/50">
+              Formu doldurun, en kısa sürede size dönüş yapalım.
+            </p>
+
+            <div className="rounded-[32px] border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6 text-left sm:p-8">
+              <ContactForm />
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section className="relative bg-black py-16 sm:py-24">
+        <div className="absolute right-1/4 top-1/4 h-[400px] w-[400px] rounded-full bg-[#d21027] opacity-5 blur-[120px]" />
+        <div className="relative mx-auto max-w-3xl px-6 sm:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl">
+              Hızlı{" "}
+              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">yanıtlar</span>
+            </h2>
+            <p className="mt-3 font-['Inter',sans-serif] text-sm text-white/60">
+              En sık sorulan iletişim ve destek konularını burada topladık.
+            </p>
+          </div>
+
           <div className="space-y-4">
             {faqItems.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl overflow-hidden hover:border-[#d21027]/40 transition-all"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-6 sm:px-8 py-5 flex items-center justify-between text-left"
-                >
-                  <span className="font-['Inter',sans-serif] text-white font-semibold text-base pr-6">{faq.q}</span>
-                  <ArrowRight
-                    className={`w-5 h-5 text-[#EB5200] flex-shrink-0 transition-transform ${openFaq === index ? "rotate-90" : ""}`}
-                  />
-                </button>
-                {openFaq === index && (
-                  <div className="px-6 sm:px-8 pb-5">
-                    <p className="font-['Inter',sans-serif] text-white/60 text-sm leading-relaxed">{faq.a}</p>
-                  </div>
-                )}
-              </div>
+              <QuickFaqItem
+                key={faq.q}
+                answer={faq.a}
+                isOpen={openFaq === index}
+                onToggle={() => setOpenFaq(openFaq === index ? null : index)}
+                question={faq.q}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Map / Location */}
-      <section className="bg-black py-16 sm:py-20 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="h-64 lg:h-auto min-h-[300px] bg-gradient-to-br from-[#d21027]/10 to-[#EB5200]/5 flex items-center justify-center relative">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-[#EB5200] animate-pulse" />
-                  <div
-                    className="absolute top-1/3 left-1/2 w-3 h-3 rounded-full bg-[#d21027] animate-pulse"
-                    style={{ animationDelay: "0.5s" }}
-                  />
-                  <div
-                    className="absolute top-1/2 left-1/3 w-2 h-2 rounded-full bg-[#FFBA6F] animate-pulse"
-                    style={{ animationDelay: "1s" }}
-                  />
-                  <div
-                    className="absolute top-2/3 right-1/3 w-2 h-2 rounded-full bg-[#EB5200] animate-pulse"
-                    style={{ animationDelay: "1.5s" }}
-                  />
-                </div>
-                <div className="text-center z-10">
-                  <MapPin className="w-12 h-12 text-[#EB5200] mx-auto mb-3" />
-                  <p className="font-['Inter',sans-serif] text-white font-bold text-lg">Adverport HQ</p>
-                  <p className="font-['Inter',sans-serif] text-white/50 text-sm">Levent, İstanbul</p>
-                </div>
-              </div>
-              <div className="p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
-                <h3 className="font-['Inter',sans-serif] text-white font-bold text-xl mb-6">Ofis Adresimiz</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-[#EB5200] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-['Inter',sans-serif] text-white text-sm">Levent Mah. Cömert Sok. No:12</p>
-                      <p className="font-['Inter',sans-serif] text-white/50 text-sm">Beşiktaş, İstanbul 34340</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-[#EB5200] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-['Inter',sans-serif] text-white text-sm">Pazartesi - Cuma</p>
-                      <p className="font-['Inter',sans-serif] text-white/50 text-sm">09:00 - 18:00</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Mail className="w-5 h-5 text-[#EB5200] flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-['Inter',sans-serif] text-white text-sm">destek@adverport.com</p>
-                      <p className="font-['Inter',sans-serif] text-white/50 text-sm">isbirligi@adverport.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Desteğe Ulaştın,"
+        highlight="Şimdi Uygulamayı Dene"
+        description="Adverport deneyimini doğrudan cihazında görmek için store’dan indir ve akışı içeriden keşfet."
+      />
 
       <Footer />
     </div>

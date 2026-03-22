@@ -219,6 +219,6 @@ html, body {
   color: white;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 
 * { box-sizing: border-box; }

@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { CtaSection } from "../components/CtaSection";
+import { openPreferredStore } from "../components/StoreButtons";
 
 const steps = [
   {
@@ -99,13 +101,14 @@ export default function AlisverisSeverPage() {
               Sevdiğin markalardan alışveriş yaparken kampanya, kupon ve geri kazanımları tek akışta yönet.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/markalar"
+              <button
+                type="button"
+                onClick={openPreferredStore}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-all hover:shadow-[0_0_30px_rgba(235,82,0,0.45)]"
               >
-                Markaları Keşfet
+                Markaları Uygulamada Keşfet
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </button>
               <Link
                 href="/sss"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 font-['Inter',sans-serif] text-base font-semibold text-white transition-colors hover:bg-white/10"
@@ -208,36 +211,11 @@ export default function AlisverisSeverPage() {
         </div>
       </section>
 
-      <section className="bg-black py-16 sm:py-24">
-        <div className="mx-auto max-w-5xl px-6 text-center sm:px-8">
-          <div className="rounded-[36px] border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] px-6 py-10 sm:px-10 sm:py-14">
-            <h2 className="font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-4xl">
-              Alışveriş yaparken kazanmaya{' '}
-              <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
-                bugün başla
-              </span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl font-['Inter',sans-serif] text-sm leading-relaxed text-white/60 sm:text-base">
-              Geri kazanım, kupon ve kampanya yönetimini tek yerde toplayarak alışverişi daha verimli hale getir.
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-              <Link
-                href="/markalar"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(235,82,0,0.35)]"
-              >
-                Fırsatları Gör
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/iletisim"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 font-['Inter',sans-serif] text-sm font-bold text-white transition-colors hover:bg-white/10"
-              >
-                Bize Ulaş
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Alışveriş Yaparken"
+        highlight="Bugün Kazanmaya Başla"
+        description="Uygulamayı indir, kampanyaları keşfet ve kupon ile nakit iade akışını tek yerde yönet."
+      />
 
       <Footer />
     </div>

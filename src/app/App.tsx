@@ -223,12 +223,12 @@ function SocialProof() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
+    const timeout = window.setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
-    return () => window.clearInterval(interval);
-  }, [testimonials.length]);
+    return () => window.clearTimeout(timeout);
+  }, [currentIndex, testimonials.length]);
 
   const goPrev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   const goNext = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -275,13 +275,13 @@ function SocialProof() {
 
           <div className="relative">
             <div className="overflow-hidden">
-              <AnimatePresence mode="wait">
+              <AnimatePresence initial={false} mode="wait">
                 <motion.div
                   key={currentIndex}
-                  initial={{ opacity: 0, x: 60 }}
+                  initial={{ opacity: 0, x: 36 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -60 }}
-                  transition={{ duration: 0.5 }}
+                  exit={{ opacity: 0, x: -36 }}
+                  transition={{ duration: 0.32, ease: "easeOut" }}
                   className="rounded-3xl border border-white/10 bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] p-8 shadow-[0px_25px_50px_0px_rgba(0,0,0,0.25)] sm:p-12"
                 >
                   <div className="mb-6 flex justify-center gap-1">
@@ -438,7 +438,7 @@ export default function App() {
         highlight="Bugün Başla"
         description="Binlerce kullanıcı Adverport ile kazanıyor. Sen de aramıza katıl, uygulamayı indir."
       />
-      <Footer showContact />
+      <Footer />
     </div>
   );
 }

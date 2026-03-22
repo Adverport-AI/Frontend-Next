@@ -5,7 +5,9 @@ import { motion } from "motion/react";
 import { Building2, Link, Megaphone, Store } from "lucide-react";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { CtaSection } from "../components/CtaSection";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { openPreferredStore } from "../components/StoreButtons";
 import svgAyakkabiDunyasiPaths from "../../imports/svg-kx1ychoqgl";
 
 const imgBeymenLogo = "/assets/475353305f5614af0afb11ccf4b79302062766a8.png";
@@ -113,17 +115,6 @@ function getInitials(name: string): string {
   const words = name.replace(/['']/g, " ").split(/[\s&]+/).filter(Boolean);
   if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
   return (words[0][0] + words[1][0]).toUpperCase();
-}
-
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.mobile.adverport";
-const APP_STORE_URL = "https://apps.apple.com/us/app/adverport/id1616799187";
-
-function getStoreUrl(): string {
-  const ua = navigator.userAgent || "";
-  if (/iPad|iPhone|iPod/i.test(ua) || (/Macintosh/i.test(ua) && "ontouchend" in document)) {
-    return APP_STORE_URL;
-  }
-  return PLAY_STORE_URL;
 }
 
 const categoryImages: Record<string, string> = {
@@ -238,7 +229,7 @@ function BrandCard({ brand, index }: { brand: Brand; index: number }) {
   const coverImage = getCategoryImage(brand);
 
   const handleClick = () => {
-    window.open(getStoreUrl(), "_blank", "noopener,noreferrer");
+    openPreferredStore();
   };
 
   return (
@@ -396,36 +387,11 @@ export default function MarkalariPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#0a0a0a] py-16 sm:py-24">
-        <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#d21027] opacity-10 blur-[150px]" />
-        <div className="relative mx-auto max-w-4xl px-6 text-center sm:px-8">
-          <h2 className="mb-4 font-['Inter',sans-serif] text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            Favori Markanla{" "}
-            <span className="bg-gradient-to-r from-[#EB5200] to-[#FFBA6F] bg-clip-text text-transparent">
-              Kazanmaya Başla
-            </span>
-          </h2>
-          <p className="mx-auto mb-8 max-w-xl font-['Inter',sans-serif] text-base leading-relaxed text-white/60 sm:text-lg">
-            Hemen ücretsiz kaydol, markaları keşfet ve affiliate bağlantılarını paylaşarak kazanç sağla.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              type="button"
-              onClick={() => window.open(getStoreUrl(), "_blank", "noopener,noreferrer")}
-              className="bg-gradient-to-r from-[#d21027] to-[#EB5200] px-8 py-4 rounded-full font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:shadow-[0_0_30px_rgba(210,16,39,0.5)]"
-            >
-              Ücretsiz Başla
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveCategory("tumu")}
-              className="border border-white/20 bg-white/10 px-8 py-4 rounded-full font-['Inter',sans-serif] text-base font-bold text-white transition-all hover:bg-white/20"
-            >
-              Tüm Kampanyaları Gör
-            </button>
-          </div>
-        </div>
-      </section>
+      <CtaSection
+        title="Favori Markanla"
+        highlight="Kazanmaya Başla"
+        description="Uygulamayı indir, markaları keşfet ve affiliate akışını tek panelden yönetmeye başla."
+      />
 
       <Footer />
     </div>
